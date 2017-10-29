@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -7,8 +6,6 @@ public class EnemyMovement : MonoBehaviour
 	[SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
     [SerializeField] private int health = 200;
     [SerializeField] private int rewardValue = 10;
-    
-
 
     private Transform target; // intended waypoint to travel to
 	private int waypointIndex = 0; // value of the target to travel to
@@ -62,4 +59,3 @@ public class EnemyMovement : MonoBehaviour
         PlayerManager.lives--;
     }
 }
-

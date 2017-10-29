@@ -13,7 +13,6 @@ public class TurretManager : MonoBehaviour
     public static TurretManager instance;
     private TurretStats turretToBuild;
 
-
     void Awake ()
 	{
 		if (instance != null)
@@ -33,8 +32,6 @@ public class TurretManager : MonoBehaviour
         removeCostText.gameObject.SetActive(false);
     }
 
-
-
     public void ShowInUseMessage() // Is called when a node is already occupied by a turret
     {
         inUseText.gameObject.SetActive(true); // Activates text telling the player the turret space is in use
@@ -42,17 +39,18 @@ public class TurretManager : MonoBehaviour
         HidePlacePath();
     }
 
-
-    public void BuildTurretOn(Node node) // 
+    public void BuildTurretOn(Node node) 
 	{
         removeCostText.text = string.Format("-${0}", Mathf.RoundToInt(turretToBuild.cost).ToString()); // Sets text showing the player how much money has been removed
-        if (PlayerManager.money < turretToBuild.cost) // Checks i
+
+        if (PlayerManager.money < turretToBuild.cost) // Checks if you have no money left.
         {
             brokeText.gameObject.SetActive(true);
             brokeText.gameObject.GetComponent<Animation>().Play();
             HidePlacePath();
             return;
         }
+
         PlayerManager.money -= turretToBuild.cost;
         removeCostText.gameObject.SetActive(true);
         removeCostText.gameObject.GetComponent<Animation>().Play();
@@ -82,6 +80,7 @@ public class TurretManager : MonoBehaviour
         turretToBuild = turret;
         placePath.SetActive(true);
 	}
+
     public void HidePlacePath()
     {
         placePath.SetActive(false);

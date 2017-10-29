@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-
+public class GameManager : MonoBehaviour
+{
     private bool gameEnded = false;
 
 	void Update ()
@@ -12,7 +10,8 @@ public class GameManager : MonoBehaviour {
         {
             return;
         }
-		if(PlayerManager.lives <=0 )
+
+		if(PlayerManager.lives <= 0)
         {
             EndGame();
         }

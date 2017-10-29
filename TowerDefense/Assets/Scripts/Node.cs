@@ -38,6 +38,7 @@ public class Node : MonoBehaviour
             turretManager.ShowInUseMessage();
 			return;
 		}
+
 		turretManager.BuildTurretOn(this);
         ShopManager.instance.TurretPlaced();
 	}

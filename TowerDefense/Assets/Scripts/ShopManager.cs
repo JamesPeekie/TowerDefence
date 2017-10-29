@@ -1,17 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
+using System.Collections.Generic;
 
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private GameObject turretInfoPanel;
 
-    [SerializeField] private GameObject standardTurretDisplay;
-    [SerializeField] private GameObject advancedTurretDisplay;
-    [SerializeField] private GameObject missileTurretDisplay;
-    [SerializeField] private GameObject advancedMissileTurretDisplay;
-    [SerializeField] private GameObject laserTurretDisplay;
-    [SerializeField] private GameObject advancedLaserTurretDisplay;
+    private List<GameObject> displayTurrets;
 
     [SerializeField] private Text turretNameText;
     [SerializeField] private Text turretPriceText;
@@ -44,15 +39,21 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
+        InitializeDisplayTurrets();
         turretManager = TurretManager.instance;
         turretInfoPanel.SetActive(false);
-        standardTurretDisplay.SetActive(false);
-        advancedTurretDisplay.SetActive(false);
-        missileTurretDisplay.SetActive(false);
-        advancedMissileTurretDisplay.SetActive(false);
-        laserTurretDisplay.SetActive(false);
-        advancedLaserTurretDisplay.SetActive(false);
+        HideAllTurretDisplays();
+    }
 
+    void InitializeDisplayTurrets()
+    {
+        displayTurrets = new List<GameObject>();
+        displayTurrets.Add(standardTurret.turretDisplay);
+        displayTurrets.Add(advancedTurret.turretDisplay);
+        displayTurrets.Add(standardMissileTurret.turretDisplay);
+        displayTurrets.Add(advancedMissileTurret.turretDisplay);
+        //displayTurrets.Add(standardLaserTurret.turretDisplay);
+        //displayTurrets.Add(advancedLaserTurret.turretDisplay);
     }
 
     void Update()
@@ -66,205 +67,108 @@ public class ShopManager : MonoBehaviour
     public void TurretPlaced()
     {
         turretPlacementActive = false;
-        standardTurretDisplay.SetActive(false);
-        advancedTurretDisplay.SetActive(false);
-        missileTurretDisplay.SetActive(false);
-        advancedMissileTurretDisplay.SetActive(false);
-        laserTurretDisplay.SetActive(false);
-        advancedLaserTurretDisplay.SetActive(false);
+        HideAllTurretDisplays();
+    }
+
+    public void HoverOverTurret(TurretStats turret)
+    {
+        if (turretPlacementActive)
+        {
+            return;
+        }
+
+        turretInfoPanel.SetActive(true);
+        turretNameText.text = turret.displayName;
+        turretPriceText.text = string.Format("Price: ${0}", turret.cost);
+        turretDamageText.text = string.Format("Damage: {0}", turret.damage.ToString());
+        turretRangeText.text = string.Format("Range: {0}", turret.range.ToString());
+        turretRateOfFireText.text = string.Format("Rate of Fire: {0}", turret.rateOfFire.ToString());
+        turretTurnSpeedText.text = string.Format("Turn Speed: {0}", turret.turnSpeed.ToString());
     }
 
     public void StandardTurretIconPointerEnter()
     {
-        if (turretPlacementActive)
-        {
-            return;
-        }
-
-        turretInfoPanel.SetActive(true);
-        turretNameText.text = standardTurret.displayName;
-        turretPriceText.text = string.Format("Price: ${0}", standardTurret.cost);
-        turretDamageText.text = string.Format("Damage: {0}", standardTurret.damage.ToString());
-        turretRangeText.text = string.Format("Range: {0}", standardTurret.range.ToString());
-        turretRateOfFireText.text = string.Format("Rate of Fire: {0}", standardTurret.rateOfFire.ToString());
-        turretTurnSpeedText.text = string.Format("Turn Speed: {0}", standardTurret.turnSpeed.ToString());
+        HoverOverTurret(standardTurret);
     }
 
     public void AdvancedTurretIconPointerEnter()
     {
-        if (turretPlacementActive)
-        {
-            return;
-        }
-
-        turretInfoPanel.SetActive(true);
-        turretNameText.text = advancedTurret.displayName;
-        turretPriceText.text = string.Format("Price: ${0}", advancedTurret.cost);
-        turretDamageText.text = string.Format("Damage: {0}", advancedTurret.damage.ToString());
-        turretRangeText.text = string.Format("Range: {0}", advancedTurret.range.ToString());
-        turretRateOfFireText.text = string.Format("Rate of Fire: {0}", advancedTurret.rateOfFire.ToString());
-        turretTurnSpeedText.text = string.Format("Turn Speed: {0}", advancedTurret.turnSpeed.ToString());
+        HoverOverTurret(advancedTurret);
     }
 
     public void MissileTurretIconPointerEnter()
     {
-        if (turretPlacementActive)
-        {
-            return;
-        }
-
-        turretInfoPanel.SetActive(true);
-        turretNameText.text = standardMissileTurret.displayName;
-        turretPriceText.text = string.Format("Price: ${0}", standardMissileTurret.cost);
-        turretDamageText.text = string.Format("Damage: {0}", standardMissileTurret.damage.ToString());
-        turretRangeText.text = string.Format("Range: {0}", standardMissileTurret.range.ToString());
-        turretRateOfFireText.text = string.Format("Rate of Fire: {0}", standardMissileTurret.rateOfFire.ToString());
-        turretTurnSpeedText.text = string.Format("Turn Speed: {0}", standardMissileTurret.turnSpeed.ToString());
+        HoverOverTurret(standardMissileTurret);
     }
 
     public void AdvancedMissileTurretIconPointerEnter()
     {
-        if (turretPlacementActive)
-        {
-            return;
-        }
-
-        turretInfoPanel.SetActive(true);
-        turretNameText.text = advancedMissileTurret.displayName;
-        turretPriceText.text = string.Format("Price: ${0}", advancedMissileTurret.cost);
-        turretDamageText.text = string.Format("Damage: {0}", advancedMissileTurret.damage.ToString());
-        turretRangeText.text = string.Format("Range: {0}", advancedMissileTurret.range.ToString());
-        turretRateOfFireText.text = string.Format("Rate of Fire: {0}", advancedMissileTurret.rateOfFire.ToString());
-        turretTurnSpeedText.text = string.Format("Turn Speed: {0}", advancedMissileTurret.turnSpeed.ToString());
+        HoverOverTurret(advancedMissileTurret);
     }
 
     public void LaserTurretIconPointerEnter()
     {
-        if (turretPlacementActive)
-        {
-            return;
-        }
-
-        turretInfoPanel.SetActive(true);
-        turretNameText.text = standardLaserTurret.displayName;
-        turretPriceText.text = string.Format("Price: ${0}", standardLaserTurret.cost);
-        turretDamageText.text = string.Format("Damage: {0}", standardLaserTurret.damage.ToString());
-        turretRangeText.text = string.Format("Range: {0}", standardLaserTurret.range.ToString());
-        turretRateOfFireText.text = string.Format("Rate of Fire: {0}", standardLaserTurret.rateOfFire.ToString());
-        turretTurnSpeedText.text = string.Format("Turn Speed: {0}", standardLaserTurret.turnSpeed.ToString());
+        HoverOverTurret(standardLaserTurret);
     }
 
     public void AdvancedLaserTurretIconPointerEnter()
     {
-        if (turretPlacementActive)
-        {
-            return;
-        }
-
-        turretInfoPanel.SetActive(true);
-        turretNameText.text = advancedLaserTurret.displayName;
-        turretPriceText.text = string.Format("Price: ${0}", advancedLaserTurret.cost);
-        turretDamageText.text = string.Format("Damage: {0}", advancedLaserTurret.damage.ToString());
-        turretRangeText.text = string.Format("Range: {0}", advancedLaserTurret.range.ToString());
-        turretRateOfFireText.text = string.Format("Rate of Fire: {0}", advancedLaserTurret.rateOfFire.ToString());
-        turretTurnSpeedText.text = string.Format("Turn Speed: {0}", advancedLaserTurret.turnSpeed.ToString());
+        HoverOverTurret(advancedLaserTurret);
     }
-
 
     public void IconPointerExit()
     {
         turretInfoPanel.SetActive(false);
     }
 
+    void HideAllTurretDisplays()
+    {
+        displayTurrets.ForEach(g => g.SetActive(false));
+    }
+
+    void ActivatePlacement(TurretStats turret)
+    {
+        HideAllTurretDisplays();
+        turret.turretDisplay.SetActive(true);
+
+        turretPlacementActive = true;
+        turretInfoPanel.SetActive(false);
+        turretManager.SelectTurretToBuild(turret);
+    }
 
     public void ActivateStandardTurretPlacement()
     {
-        standardTurretDisplay.SetActive(true);
-        advancedTurretDisplay.SetActive(false);
-        missileTurretDisplay.SetActive(false);
-        advancedMissileTurretDisplay.SetActive(false);
-        laserTurretDisplay.SetActive(false);
-        advancedLaserTurretDisplay.SetActive(false);
-        turretPlacementActive = true;
-        turretInfoPanel.SetActive(false);
-        turretManager.SelectTurretToBuild(standardTurret);
+        ActivatePlacement(standardTurret);
     }
 
     public void ActivateAdvancedTurretPlacement()
     { 
-        standardTurretDisplay.SetActive(false);
-        advancedTurretDisplay.SetActive(true);
-        missileTurretDisplay.SetActive(false);
-        advancedMissileTurretDisplay.SetActive(false);
-        laserTurretDisplay.SetActive(false);
-        advancedLaserTurretDisplay.SetActive(false);
-        turretPlacementActive = true;
-        turretInfoPanel.SetActive(false);
-        turretManager.SelectTurretToBuild(advancedTurret);
+        ActivatePlacement(advancedTurret);
     }
 
     public void ActivateMissileTurretPlacement()
     {
-        standardTurretDisplay.SetActive(false);
-        advancedTurretDisplay.SetActive(false);
-        missileTurretDisplay.SetActive(true);
-        advancedMissileTurretDisplay.SetActive(false);
-        laserTurretDisplay.SetActive(false);
-        advancedLaserTurretDisplay.SetActive(false);
-        turretPlacementActive = true;
-        turretInfoPanel.SetActive(false);
-        turretManager.SelectTurretToBuild(standardMissileTurret);
+        ActivatePlacement(standardMissileTurret);
     }
 
     public void ActivateAdvancedMissileTurretPlacement()
     {
-        standardTurretDisplay.SetActive(false);
-        advancedTurretDisplay.SetActive(false);
-        missileTurretDisplay.SetActive(false);
-        advancedMissileTurretDisplay.SetActive(true);
-        laserTurretDisplay.SetActive(false);
-        advancedLaserTurretDisplay.SetActive(false);
-        turretPlacementActive = true;
-        turretInfoPanel.SetActive(false);
-        turretManager.SelectTurretToBuild(advancedMissileTurret);
+        ActivatePlacement(advancedMissileTurret);
     }
 
     public void ActivateLaserTurretPlacement()
     {
-        standardTurretDisplay.SetActive(false);
-        advancedTurretDisplay.SetActive(false);
-        missileTurretDisplay.SetActive(false);
-        advancedMissileTurretDisplay.SetActive(false);
-        laserTurretDisplay.SetActive(true);
-        advancedLaserTurretDisplay.SetActive(false);
-        turretPlacementActive = true;
-        turretInfoPanel.SetActive(false);
-        turretManager.SelectTurretToBuild(advancedMissileTurret);
+        ActivatePlacement(standardLaserTurret);
     }
 
     public void ActivateAdvancedLaserTurretPlacement()
     {
-        standardTurretDisplay.SetActive(false);
-        advancedTurretDisplay.SetActive(false);
-        missileTurretDisplay.SetActive(false);
-        advancedMissileTurretDisplay.SetActive(false);
-        laserTurretDisplay.SetActive(false);
-        advancedLaserTurretDisplay.SetActive(true);
-        turretPlacementActive = true;
-        turretInfoPanel.SetActive(false);
-        turretManager.SelectTurretToBuild(advancedMissileTurret);
+        ActivatePlacement(advancedLaserTurret);
     }
 
     public void DeActivateTurretPlacement()
     {
-        standardTurretDisplay.SetActive(false);
-        advancedTurretDisplay.SetActive(false);
-        missileTurretDisplay.SetActive(false);
-        advancedMissileTurretDisplay.SetActive(false);
-        laserTurretDisplay.SetActive(false);
-        advancedLaserTurretDisplay.SetActive(false);
+        HideAllTurretDisplays();
         turretPlacementActive = false;
     }
-
-
 }

@@ -8,27 +8,36 @@ public class Turret : MonoBehaviour
 	[SerializeField] private float range = 15f; // Area in which the enemy is detected
 	[SerializeField] private float turnSpeed = 10f; // Rate at which the turret turns twords target
 	[SerializeField] private float fireRate = 1f; // Delay factor between shots
-	private float fireCountdown = 0f; // Counts the delay between shots
 	[SerializeField] private AudioSource shootSound;
+	private float fireCountdown = 0f; // Counts the delay between shots
+
+    [Space]
 
 	[Header("Fixed Assets")]
 	[SerializeField] private string enemyTag = "Enemy"; // Game object that has a tag with this name, ensuring only enemy objects are targeted
 	[SerializeField] private Transform partToRotate; // Transform that holds the part of the turret that moves.
-	[SerializeField] private Transform gunBarrel; // Transform that animates on firing and bullets spawn at
+	[SerializeField] private Transform gunBarrel; // Transform that animates on firing and bullets spawn at.
+
+    [Space]
+
+    [Header("Bullet")]
 	[SerializeField] private GameObject bullet; // Bullet object to spawn on firing
 
-    [SerializeField] private bool UseLaser = false;
+    [Space]
+
+    [Header("Laser")]
+    [SerializeField] private bool useLaser = false;
     [SerializeField] private LineRenderer laserDisplay;
 
-	private AudioController audioController; // References the audio script
+	private AudioController audioController; // References the audio script.
 
 	void Start () 
 	{
-		InvokeRepeating("UpdateTarget", 0f, 0.5f); //Checks for a target on a delay, rather than every frame, for performance
-		audioController = AudioController.instance; //Creates a copy of the sound control script to reference to when playing a turret sound
+		InvokeRepeating("UpdateTarget", 0f, 0.5f); // Checks for a target on a delay, rather than every frame, for performance
+		audioController = AudioController.instance; // Creates a copy of the sound control script to reference to when playing a turret sound
 	}
 
-	void UpdateTarget () // Function for finding target
+	void UpdateTarget() // Function for finding target
 	{
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // Sets all gameobjects in the scene that have the tag "enemy"
 		float shortestDistance = Mathf.Infinity;
@@ -61,7 +70,7 @@ public class Turret : MonoBehaviour
 
         LockOn();
 
-        if (UseLaser)
+        if (useLaser)
         {
             FireBeam();
         }
@@ -73,10 +82,9 @@ public class Turret : MonoBehaviour
                 fireCountdown = 1f / fireRate; // Resets countdown and applies firerate
             }
         }
-
 	}
 
-    void LockOn ()
+    void LockOn()
     {
         // Rotates Gun barrel towards enemy.
         Vector3 dir = target.position - transform.position;
@@ -89,7 +97,6 @@ public class Turret : MonoBehaviour
     {
         laserDisplay.SetPosition(0, gunBarrel.position);
         laserDisplay.SetPosition(1, target.position);
-
     }
 
 	void Shoot() // Function that runs on shooting the enemy

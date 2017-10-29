@@ -9,7 +9,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float explosionRadius = 0f; //Optional splash damage for special turrets
     [SerializeField] private GameObject AntBlood; //Particle effect to play on enemy hit
     
-    
     private AudioController audioController;
 
     void Start()
@@ -54,7 +53,8 @@ public class Bullet : MonoBehaviour
 		GameObject effectIns = Instantiate(AntBlood, target.position, target.rotation); //Spawns particle effect on hitting the target
 		Destroy(effectIns, 2f); //deletes particle effect after 2 seconds for performance
         Destroy(gameObject); //Destroys Bullet
-        audioController.PlaySound ("AntHit"); // Plays the Ant Hit sound.
+        audioController.PlaySound("AntHit"); // Plays the Ant Hit sound.
+
         if (explosionRadius > 0f)
         {
             Explode();
@@ -63,7 +63,6 @@ public class Bullet : MonoBehaviour
         {
             Damage(target);
         }
-
 	}
 
     void Explode()
@@ -76,12 +75,12 @@ public class Bullet : MonoBehaviour
                 Damage(collider.transform);
             }
         }
-
     }
 
     void Damage(Transform enemy)
     {
         EnemyMovement e = enemy.GetComponent<EnemyMovement>();
+
         if (e != null)
         {
             e.TakeDamage(damage);

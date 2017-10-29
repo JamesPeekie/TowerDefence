@@ -6,30 +6,36 @@ public class TerrainSwitcher : MonoBehaviour
 	[SerializeField] private GameObject grass;
 	[SerializeField] private GameObject ice;
 
-	void Start ()
+	void Start()
     {
-        grass.SetActive(true); // Activate Grass Terrain by default.
+        ActivateTerrain(grass);
+	}
+
+    void ActivateTerrain(GameObject terrain)
+    {
+        HideAllTerrainTypes();
+        terrain.SetActive(true);
+    }
+
+    void HideAllTerrainTypes()
+    {
+        grass.SetActive(false);
         desert.SetActive(false);
-		ice.SetActive (false);
+        ice.SetActive(false);
+    }
+
+	public void ActivateGrassTerrain()
+    {
+        ActivateTerrain(grass);
 	}
 
 	public void ActivateDesertTerrain()
     {
-		desert.SetActive(true);
-		grass.SetActive (false);
-		ice.SetActive (false);
+        ActivateTerrain(desert);
 	}
 
-	public void ActivateGrassTerrain()
-    {
-        grass.SetActive(true);
-        desert.SetActive(false);
-		ice.SetActive (false);
-	}
 	public void ActivateIceTerrain()
     {
-        ice.SetActive(true);
-        desert.SetActive (false);
-		grass.SetActive (false);
+        ActivateTerrain(ice);
 	}
 }
