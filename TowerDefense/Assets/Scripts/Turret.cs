@@ -17,6 +17,8 @@ public class Turret : MonoBehaviour
 	[SerializeField] private string enemyTag = "Enemy"; // Game object that has a tag with this name, ensuring only enemy objects are targeted
 	[SerializeField] private Transform partToRotate; // Transform that holds the part of the turret that moves.
 	[SerializeField] private Transform gunBarrel; // Transform that animates on firing and bullets spawn at.
+    [SerializeField] private ParticleSystem impactEffect;
+    [SerializeField] private ParticleSystem shootEffect;
 
     [Space]
 
@@ -66,8 +68,19 @@ public class Turret : MonoBehaviour
 	void Update () 
 	{
 	    fireCountdown -= Time.deltaTime; // Reduces countdown
-		if (target == null) return; // Do nothing this frame if no target is found 
-
+        if (target == null)
+        {
+            if (useLaser)
+            {
+                if(laserDisplay.enabled)
+                {
+                    laserDisplay.enabled = false;
+                    impactEffect.Stop();
+                    shootEffect.Stop();
+                }
+            }
+            return; // Do nothing this frame if no target is found 
+        }
         LockOn();
 
         if (useLaser)
@@ -95,8 +108,19 @@ public class Turret : MonoBehaviour
 
     void FireBeam()
     {
+        if (!laserDisplay.enabled)
+        {
+            laserDisplay.enabled = true;
+
+            impactEffect.Play();
+            shootEffect.Play();
+        }
         laserDisplay.SetPosition(0, gunBarrel.position);
         laserDisplay.SetPosition(1, target.position);
+
+        impactEffect.transform.position = target.position;
+        shootEffect.transform.position = gunBarrel.position;
+        shootEffect.transform.rotation = gunBarrel.rotation;
     }
 
 	void Shoot() // Function that runs on shooting the enemy
