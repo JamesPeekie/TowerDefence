@@ -10,18 +10,18 @@ public class TurretManager : MonoBehaviour
     [SerializeField] private Text brokeText;
     [SerializeField] private Text removeCostText;
 
-    public static TurretManager instance;
+    public static TurretManager singleton;
     private TurretStats turretToBuild;
 
     void Awake ()
 	{
-		if (instance != null)
+		if (singleton != null)
         {
 			Debug.LogError("Multiple TurretManagers");
-			return; // Tests for errors where multiple of this script is running 
+			return; 
 		}
 
-		instance = this; // Sets this script as an instance to be used in other scripts
+		singleton = this; 
 	}
 
     void Start()
