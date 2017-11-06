@@ -53,8 +53,8 @@ public class ShopManager : MonoBehaviour
         displayTurrets.Add(advancedTurret.turretDisplay);
         displayTurrets.Add(standardMissileTurret.turretDisplay);
         displayTurrets.Add(advancedMissileTurret.turretDisplay);
-        //displayTurrets.Add(standardLaserTurret.turretDisplay);
-        //displayTurrets.Add(advancedLaserTurret.turretDisplay);
+        displayTurrets.Add(standardLaserTurret.turretDisplay);
+        displayTurrets.Add(advancedLaserTurret.turretDisplay);
     }
 
     void Update()
