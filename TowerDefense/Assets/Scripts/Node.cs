@@ -22,7 +22,7 @@ public class Node : MonoBehaviour
 	{
 		nodeRenderer = GetComponent<Renderer>();
 		originalColour = nodeRenderer.material.color;
-		turretManager = TurretManager.instance;
+		turretManager = TurretManager.singleton;
 	}
 
 	void OnMouseDown()
@@ -40,7 +40,7 @@ public class Node : MonoBehaviour
 		}
 
 		turretManager.BuildTurretOn(this);
-        ShopManager.instance.TurretPlaced();
+        ShopManager.singleton.TurretPlaced();
 	}
 
 	void OnMouseEnter()
