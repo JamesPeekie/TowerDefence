@@ -139,10 +139,4 @@ public class Turret : MonoBehaviour
 
 		audioController.PlaySound("Shoot"); // Play the shoot sound.
 	}
-
-	void OnDrawGizmosSelected() // Displays range on the viewport when the object is selected
-	{
-		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere (transform.position, range);	
-	}
 }
