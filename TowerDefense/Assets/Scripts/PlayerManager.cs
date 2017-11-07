@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviour
     {
         money = walletMoney;
         lives = initialLives;
+        healthText.gameObject.SetActive(false);
+        addCostText.gameObject.SetActive(false);
     }
 
 	void Update ()

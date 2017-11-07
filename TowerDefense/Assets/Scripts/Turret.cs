@@ -3,8 +3,9 @@
 public class Turret : MonoBehaviour
 {
 	private Transform target; // Singular Enemy found to target
+    private EnemyMovement enemyScript;
 
-	[Header("Attributes")]
+    [Header("Attributes")]
 	[SerializeField] private float range = 15f; // Area in which the enemy is detected
 	[SerializeField] private float turnSpeed = 10f; // Rate at which the turret turns twords target
 	[SerializeField] private float fireRate = 1f; // Delay factor between shots
@@ -29,7 +30,9 @@ public class Turret : MonoBehaviour
 
     [Header("Laser")]
     [SerializeField] private bool useLaser = false;
+    [SerializeField] private bool slowsEnemy = false;
     [SerializeField] private LineRenderer laserDisplay;
+    [SerializeField] private int DamageOverTime = 30;
 
 	private AudioController audioController; // References the audio script.
 
@@ -58,6 +61,7 @@ public class Turret : MonoBehaviour
 		if (nearestEnemy != null && shortestDistance <= range) // Sets the nearest enemy as the target
         { 
 			target = nearestEnemy.transform;
+            enemyScript = nearestEnemy.GetComponent<EnemyMovement>();
 		}
         else
         {
@@ -67,7 +71,7 @@ public class Turret : MonoBehaviour
 		
 	void Update () 
 	{
-	    fireCountdown -= Time.deltaTime; // Reduces countdown
+	    fireCountdown -= Time.deltaTime; 
         if (target == null)
         {
             if (useLaser)
@@ -79,7 +83,7 @@ public class Turret : MonoBehaviour
                     shootEffect.Stop();
                 }
             }
-            return; // Do nothing this frame if no target is found 
+            return; 
         }
         LockOn();
 
@@ -89,10 +93,10 @@ public class Turret : MonoBehaviour
         }
         else
         {
-            if (fireCountdown <= 0f) // Checks if firecoundown has dropped far enough and allows it to shoot if low enough
+            if (fireCountdown <= 0f) 
             {
-                Shoot(); // Fires the shoot function
-                fireCountdown = 1f / fireRate; // Resets countdown and applies firerate
+                Shoot(); 
+                fireCountdown = 1f / fireRate; 
             }
         }
 	}
@@ -108,6 +112,9 @@ public class Turret : MonoBehaviour
 
     void FireBeam()
     {
+        enemyScript.TakeDamage(DamageOverTime * Time.deltaTime);
+        if (slowsEnemy) { enemyScript.Slow(); }
+
         if (!laserDisplay.enabled)
         {
             laserDisplay.enabled = true;
