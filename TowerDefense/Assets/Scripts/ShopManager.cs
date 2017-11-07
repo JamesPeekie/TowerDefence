@@ -21,6 +21,8 @@ public class ShopManager : MonoBehaviour
     public TurretStats advancedMissileTurret;
     public TurretStats standardLaserTurret;
     public TurretStats advancedLaserTurret;
+    public TurretStats standardIceTurret;
+    public TurretStats advancedIceTurret;
 
     private TurretManager turretManager;
     public bool turretPlacementActive = false;
@@ -55,6 +57,8 @@ public class ShopManager : MonoBehaviour
         displayTurrets.Add(advancedMissileTurret.turretDisplay);
         displayTurrets.Add(standardLaserTurret.turretDisplay);
         displayTurrets.Add(advancedLaserTurret.turretDisplay);
+        displayTurrets.Add(standardIceTurret.turretDisplay);
+        displayTurrets.Add(advancedIceTurret.turretDisplay);
     }
 
     void Update()
@@ -117,6 +121,16 @@ public class ShopManager : MonoBehaviour
         HoverOverTurret(advancedLaserTurret);
     }
 
+    public void IceTurretIconPointerEnter()
+    {
+        HoverOverTurret(standardLaserTurret);
+    }
+
+    public void AdvancedIceTurretIconPointerEnter()
+    {
+        HoverOverTurret(advancedLaserTurret);
+    }
+
     public void IconPointerExit()
     {
         turretInfoPanel.SetActive(false);
@@ -165,6 +179,16 @@ public class ShopManager : MonoBehaviour
     public void ActivateAdvancedLaserTurretPlacement()
     {
         ActivatePlacement(advancedLaserTurret);
+    }
+
+    public void ActivateIceTurretPlacement()
+    {
+        ActivatePlacement(standardIceTurret);
+    }
+
+    public void ActivateAdvancedIceTurretPlacement()
+    {
+        ActivatePlacement(advancedIceTurret);
     }
 
     public void DeActivateTurretPlacement()

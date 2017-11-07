@@ -908,6 +908,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   useLaser: 1
   laserDisplay: {fileID: 120380811818350608}
+  DamageOverTime: 30
 --- !u!120 &120380811818350608
 LineRenderer:
   m_ObjectHideFlags: 1

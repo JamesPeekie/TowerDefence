@@ -9,6 +9,7 @@ public class TurretManager : MonoBehaviour
 	[SerializeField] private Text inUseText;
 	[SerializeField] private Text brokeText;
 	[SerializeField] private Text removeCostText;
+    [SerializeField] private Color frozenColour;
 
 	public static TurretManager singleton;
 	private TurretStats turretToBuild;

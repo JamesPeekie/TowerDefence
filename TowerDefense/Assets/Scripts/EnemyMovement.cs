@@ -2,26 +2,43 @@
 
 public class EnemyMovement : MonoBehaviour
 {
-	[SerializeField] private float speed = 5f; // Speed modifier for the enemy to move at
-	[SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
-    [SerializeField] private int health = 200;
+    private float speed;
+
+    [SerializeField] private float startSpeed = 5f; // Speed modifier for the enemy to move at
+    [SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
+    [SerializeField] private float health = 200;
     [SerializeField] private int rewardValue = 10;
+    [SerializeField] private Color frozenColour;
+    [SerializeField] private GameObject body;
 
     private Transform target; // intended waypoint to travel to
 	private int waypointIndex = 0; // value of the target to travel to
+    private Renderer enemyRender;
+    private Color defaultColour;
 
     void Start()
-	{
-		target = Waypoints.points[0]; // lists the first waypoint as the target
+	{   
+        enemyRender = body.GetComponent<Renderer>();
+        defaultColour = enemyRender.material.color;
+        speed = startSpeed;
+        enemyRender.material.color = defaultColour;
+        target = Waypoints.points[0]; // lists the first waypoint as the target
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         health -= amount;
         if (health <= 0)
         {
             EnemyDeath();
         }
+    }
+
+    public void Slow()
+    {
+        speed = startSpeed * 0.3f;
+        enemyRender.material.color = frozenColour;
+
     }
 
     void EnemyDeath()
@@ -51,7 +68,10 @@ public class EnemyMovement : MonoBehaviour
 
 			target = Waypoints.points [waypointIndex];
 		}
-	}
+        speed = startSpeed;
+        enemyRender.material.color = defaultColour;
+
+    }
 
     void ReachedEnd()
     {
