@@ -16,12 +16,6 @@ public class Bullet : MonoBehaviour
         audioController = AudioController.instance;
     }
 
-    void OnDrawGizmosSelected() // Displays damage radius on the viewport when the object is selected
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
-    }
-
     void Update ()
     {
         if (target == null) //Destroys bullet if there is no target

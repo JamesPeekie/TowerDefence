@@ -25,22 +25,23 @@ public class ShopManager : MonoBehaviour
     private TurretManager turretManager;
     public bool turretPlacementActive = false;
 
-    public static ShopManager instance;
+    public static ShopManager singleton;
 
     void Awake()
     {
-        if (instance != null)
+        if (singleton != null)
         {
-            Debug.LogError("More than one ShopManager in the scene!");
+            Debug.LogError("Multiple ShopManagers");
+            return;
         }
 
-        instance = this;
+        singleton = this;
     }
 
     void Start()
     {
         InitializeDisplayTurrets();
-        turretManager = TurretManager.instance;
+        turretManager = TurretManager.singleton;
         turretInfoPanel.SetActive(false);
         HideAllTurretDisplays();
     }
@@ -52,8 +53,8 @@ public class ShopManager : MonoBehaviour
         displayTurrets.Add(advancedTurret.turretDisplay);
         displayTurrets.Add(standardMissileTurret.turretDisplay);
         displayTurrets.Add(advancedMissileTurret.turretDisplay);
-        //displayTurrets.Add(standardLaserTurret.turretDisplay);
-        //displayTurrets.Add(advancedLaserTurret.turretDisplay);
+        displayTurrets.Add(standardLaserTurret.turretDisplay);
+        displayTurrets.Add(advancedLaserTurret.turretDisplay);
     }
 
     void Update()
