@@ -25,6 +25,18 @@ public class Node : MonoBehaviour
 		turretManager = TurretManager.singleton;
 	}
 
+	void OnMouseEnter()
+	{
+		if (turretManager.CanBuild && turretManager.HasMoney && turret == null)
+        { 
+            nodeRenderer.material.color = hoverColour;
+        }
+        else
+        {
+            nodeRenderer.material.color = cannotAffordColour;
+        }
+	}
+	
 	void OnMouseDown()
 	{
 		if(!turretManager.CanBuild)
@@ -41,18 +53,6 @@ public class Node : MonoBehaviour
 
 		turretManager.BuildTurretOn(this);
         ShopManager.singleton.TurretPlaced();
-	}
-
-	void OnMouseEnter()
-	{
-		if (turretManager.CanBuild && turretManager.HasMoney && turret == null)
-        { 
-            nodeRenderer.material.color = hoverColour;
-        }
-        else
-        {
-            nodeRenderer.material.color = cannotAffordColour;
-        }
 	}
 
 	void OnMouseExit()
