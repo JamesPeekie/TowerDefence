@@ -84,7 +84,7 @@ public class TurretManager : MonoBehaviour
 
 	public void HidePlacePath()
 	{
-	placePath.SetActive(false);
-	FindObjectOfType<ShopManager>().DeActivateTurretPlacement(); // Searches the scene for an object that has the script on it, and returns it with all its assigned values
+		placePath.SetActive(false);
+		FindObjectOfType<ShopManager>().DeActivateTurretPlacement(); // Searches the scene for an object that has the script on it, and returns it with all its assigned values
 	}
 }
