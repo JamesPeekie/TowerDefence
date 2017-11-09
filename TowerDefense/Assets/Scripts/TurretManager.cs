@@ -9,7 +9,7 @@ public class TurretManager : MonoBehaviour
 	[SerializeField] private Text inUseText;
 	[SerializeField] private Text brokeText;
 	[SerializeField] private Text removeCostText;
-    [SerializeField] private Color frozenColour;
+	[SerializeField] private Color frozenColour;
 
 	public static TurretManager singleton;
 	private TurretStats turretToBuild;
@@ -82,9 +82,9 @@ public class TurretManager : MonoBehaviour
 		placePath.SetActive(true);
 	}
 
-    public void HidePlacePath()
-    {
-        placePath.SetActive(false);
-        FindObjectOfType<ShopManager>().DeActivateTurretPlacement(); // Searches the scene for an object that has the script on it, and returns it with all its assigned values
-    }
+	public void HidePlacePath()
+	{
+	placePath.SetActive(false);
+	FindObjectOfType<ShopManager>().DeActivateTurretPlacement(); // Searches the scene for an object that has the script on it, and returns it with all its assigned values
+	}
 }
