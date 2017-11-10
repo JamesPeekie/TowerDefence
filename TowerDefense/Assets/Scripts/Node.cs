@@ -3,7 +3,7 @@
 public class Node : MonoBehaviour
 {
 	[SerializeField] private Color hoverColour;
-	[SerializeField] private Color cannotAffordColour;
+	[SerializeField] private Color cannotPlaceColour;
 	[SerializeField] private Vector3 positionOffset;
 	
 	public GameObject turret;
@@ -33,7 +33,7 @@ public class Node : MonoBehaviour
         }
         else
         {
-            nodeRenderer.material.color = cannotAffordColour;
+            nodeRenderer.material.color = cannotPlaceColour;
         }
 	}
 	
