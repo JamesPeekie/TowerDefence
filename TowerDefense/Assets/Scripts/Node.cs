@@ -3,15 +3,15 @@
 public class Node : MonoBehaviour
 {
 	[SerializeField] private Color hoverColour;
-    [SerializeField] private Color cannotAffordColour;
+	[SerializeField] private Color cannotAffordColour;
 	[SerializeField] private Vector3 positionOffset;
-
-    public GameObject turret;
+	
+	public GameObject turret;
 
 	private Color originalColour;
 	private Renderer nodeRenderer;
 
-    private TurretManager turretManager;
+	private TurretManager turretManager;
 
 	public Vector3 GetBuildPosition()
 	{
