@@ -47,12 +47,12 @@ public class Node : MonoBehaviour
 		if (turret != null)
 		{
 			Debug.Log("Can't place Turret - Build spot in use!");
-            turretManager.ShowInUseMessage();
+			turretManager.ShowInUseMessage();
 			return;
 		}
 
 		turretManager.BuildTurretOn(this);
-        ShopManager.singleton.TurretPlaced();
+		ShopManager.singleton.TurretPlaced();
 	}
 
 	void OnMouseExit()
