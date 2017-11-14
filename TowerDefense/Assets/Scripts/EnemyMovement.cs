@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
     [SerializeField] private float health = 200;
     [SerializeField] private int rewardValue = 10;
+    [SerializeField] private int scoreValue = 1;
     [SerializeField] private Color frozenColour;
     [SerializeField] private GameObject body;
 
@@ -38,13 +39,15 @@ public class EnemyMovement : MonoBehaviour
     {
         speed = startSpeed * 0.3f;
         enemyRender.material.color = frozenColour;
-
+        Debug.Log("Ant Set To Blue");
     }
-
+    
     void EnemyDeath()
     {
         Destroy(gameObject);
-        FindObjectOfType<PlayerManager>().RewardCurrency(rewardValue);
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.RewardCurrency(rewardValue);
+        playerManager.addScore(scoreValue);
     }
 
 	void Update ()
@@ -68,8 +71,10 @@ public class EnemyMovement : MonoBehaviour
 
 			target = Waypoints.points [waypointIndex];
 		}
+        
         speed = startSpeed;
         enemyRender.material.color = defaultColour;
+        Debug.Log("Ant Set To Black");
 
     }
 
