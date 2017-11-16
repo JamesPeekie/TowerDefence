@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 		if (gameEnded)
 		{
 			return;
-        }
+		}
 		if(PlayerManager.lives <= 0)
 		{
 			EndGame();
