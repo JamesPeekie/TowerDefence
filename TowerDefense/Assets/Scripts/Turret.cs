@@ -140,6 +140,7 @@ public class Turret : MonoBehaviour
 		{
 			bullet.Seek(target);
 		}
+		Debug.Log("Bullet Shot");
 
 		anim.Stop(); // Stops any old animations that were playing
 		anim.Play("recoil"); // Plays the shooting animation
