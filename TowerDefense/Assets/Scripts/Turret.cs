@@ -3,36 +3,36 @@
 public class Turret : MonoBehaviour
 {
 	private Transform target; // Singular Enemy found to target
-    private EnemyMovement enemyScript;
+	private EnemyMovement enemyScript;
 
-    [Header("Attributes")]
+	[Header("Attributes")]
 	[SerializeField] private float range = 15f; // Area in which the enemy is detected
 	[SerializeField] private float turnSpeed = 10f; // Rate at which the turret turns twords target
 	[SerializeField] private float fireRate = 1f; // Delay factor between shots
 	[SerializeField] private AudioSource shootSound;
 	private float fireCountdown = 0f; // Counts the delay between shots
 
-    [Space]
+	[Space]
 
 	[Header("Fixed Assets")]
 	[SerializeField] private string enemyTag = "Enemy"; // Game object that has a tag with this name, ensuring only enemy objects are targeted
 	[SerializeField] private Transform partToRotate; // Transform that holds the part of the turret that moves.
 	[SerializeField] private Transform gunBarrel; // Transform that animates on firing and bullets spawn at.
-    [SerializeField] private ParticleSystem impactEffect;
-    [SerializeField] private ParticleSystem shootEffect;
+	[SerializeField] private ParticleSystem impactEffect;
+	[SerializeField] private ParticleSystem shootEffect;
 
-    [Space]
+	[Space]
 
-    [Header("Bullet")]
+	[Header("Bullet")]
 	[SerializeField] private GameObject bullet; // Bullet object to spawn on firing
 
-    [Space]
+	[Space]
 
-    [Header("Laser")]
-    [SerializeField] private bool useLaser = false;
-    [SerializeField] private bool slowsEnemy = false;
-    [SerializeField] private LineRenderer laserDisplay;
-    [SerializeField] private int DamageOverTime = 30;
+	[Header("Laser")]
+	[SerializeField] private bool useLaser = false;
+	[SerializeField] private bool slowsEnemy = false;
+	[SerializeField] private LineRenderer laserDisplay;
+	[SerializeField] private int DamageOverTime = 30;
 
 	private AudioController audioController; // References the audio script.
 
@@ -59,9 +59,9 @@ public class Turret : MonoBehaviour
 		}
 
 		if (nearestEnemy != null && shortestDistance <= range) // Sets the nearest enemy as the target
-        { 
+		{ 
 			target = nearestEnemy.transform;
-            enemyScript = nearestEnemy.GetComponent<EnemyMovement>();
+			enemyScript = nearestEnemy.GetComponent<EnemyMovement>();
 		}
         else
         {
