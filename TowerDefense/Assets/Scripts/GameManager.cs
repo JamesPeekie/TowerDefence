@@ -2,24 +2,23 @@
 
 public class GameManager : MonoBehaviour
 {
-    private bool gameEnded = false;
-
+	private bool gameEnded = false;
+	
 	void Update ()
-    {
-        if (gameEnded)
-        {
-            return;
+	{
+		if (gameEnded)
+		{
+			return;
         }
-
 		if(PlayerManager.lives <= 0)
-        {
-            EndGame();
-        }
+		{
+			EndGame();
+		}
 	}
 
-    void EndGame ()
-    {
-        gameEnded = true;
-        Time.timeScale = 0;
-    }
+	void EndGame ()
+	{
+		gameEnded = true;
+		Time.timeScale = 0;
+	}
 }
