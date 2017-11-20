@@ -38,7 +38,6 @@ public class EnemyMovement : MonoBehaviour
     {
         speed = startSpeed * 0.3f;
         enemyRender.material.color = frozenColour;
-
     }
 
     void EnemyDeath()
@@ -68,6 +67,7 @@ public class EnemyMovement : MonoBehaviour
 
 			target = Waypoints.points [waypointIndex];
 		}
+
         speed = startSpeed;
         enemyRender.material.color = defaultColour;
 
