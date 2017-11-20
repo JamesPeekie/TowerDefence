@@ -3,15 +3,15 @@
 public class Node : MonoBehaviour
 {
 	[SerializeField] private Color hoverColour;
-    [SerializeField] private Color cannotAffordColour;
+	[SerializeField] private Color cannotPlaceColour;
 	[SerializeField] private Vector3 positionOffset;
-
-    public GameObject turret;
+	
+	public GameObject turret;
 
 	private Color originalColour;
 	private Renderer nodeRenderer;
 
-    private TurretManager turretManager;
+	private TurretManager turretManager;
 
 	public Vector3 GetBuildPosition()
 	{
@@ -20,8 +20,8 @@ public class Node : MonoBehaviour
 
 	void Start()
 	{
-		nodeRenderer = GetComponent<Renderer>();
 		originalColour = nodeRenderer.material.color;
+		nodeRenderer = GetComponent<Renderer>();
 		turretManager = TurretManager.singleton;
 	}
 
@@ -33,7 +33,7 @@ public class Node : MonoBehaviour
         }
         else
         {
-            nodeRenderer.material.color = cannotAffordColour;
+            nodeRenderer.material.color = cannotPlaceColour;
         }
 	}
 	
@@ -47,12 +47,12 @@ public class Node : MonoBehaviour
 		if (turret != null)
 		{
 			Debug.Log("Can't place Turret - Build spot in use!");
-            turretManager.ShowInUseMessage();
+			turretManager.ShowInUseMessage();
 			return;
 		}
 
 		turretManager.BuildTurretOn(this);
-        ShopManager.singleton.TurretPlaced();
+		ShopManager.singleton.TurretPlaced();
 	}
 
 	void OnMouseExit()
