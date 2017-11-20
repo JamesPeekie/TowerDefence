@@ -934,6 +934,7 @@ MonoBehaviour:
   shootEffect: {fileID: 198548398572706228}
   bullet: {fileID: 0}
   useLaser: 1
+  slowsEnemy: 1
   laserDisplay: {fileID: 120222704703414018}
   DamageOverTime: 0
 --- !u!120 &120222704703414018

@@ -11,10 +11,13 @@ public class PlayerManager : MonoBehaviour
 	public static int lives;
 	public int initialLives;
 	[SerializeField] private Text healthText;
+<<<<<<< HEAD
 
     public static int score;
     public int startScore;
     [SerializeField] private Text scoreText;
+=======
+>>>>>>> 1133206852a5749fd5f2b763f24b5a6745149ebf
 
     private void Start()
     {
@@ -38,6 +41,7 @@ public class PlayerManager : MonoBehaviour
         addCostText.gameObject.SetActive(true);
         addCostText.gameObject.GetComponent<Animation>().Play();
     }
+<<<<<<< HEAD
 
     public void addScore(int scoreValue)
     {
@@ -45,3 +49,6 @@ public class PlayerManager : MonoBehaviour
     }
 }
 
+=======
+}
+>>>>>>> 1133206852a5749fd5f2b763f24b5a6745149ebf
