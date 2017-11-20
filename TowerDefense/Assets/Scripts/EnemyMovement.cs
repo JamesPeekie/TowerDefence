@@ -38,10 +38,6 @@ public class EnemyMovement : MonoBehaviour
     {
         speed = startSpeed * 0.3f;
         enemyRender.material.color = frozenColour;
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of a2f158d... Basic Score System implimentation
     }
 
     void EnemyDeath()
@@ -71,17 +67,9 @@ public class EnemyMovement : MonoBehaviour
 
 			target = Waypoints.points [waypointIndex];
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 1133206852a5749fd5f2b763f24b5a6745149ebf
-=======
->>>>>>> parent of a2f158d... Basic Score System implimentation
         speed = startSpeed;
         enemyRender.material.color = defaultColour;
-
     }
 
     void ReachedEnd()
