@@ -20,8 +20,8 @@ public class Node : MonoBehaviour
 
 	void Start()
 	{
-		originalColour = nodeRenderer.material.color;
-		nodeRenderer = GetComponent<Renderer>();
+        nodeRenderer = GetComponent<Renderer>();
+        originalColour = nodeRenderer.material.color;
 		turretManager = TurretManager.singleton;
 	}
 
