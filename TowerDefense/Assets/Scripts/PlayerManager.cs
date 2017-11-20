@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static int money;
+	public static int money;
 	public int walletMoney; 
 	[SerializeField] private Text walletText;
-    [SerializeField] private Text addCostText;
+	[SerializeField] private Text addCostText;
 
-    public static int lives;
-    public int initialLives;
-    [SerializeField] private Text healthText;
+	public static int lives;
+	public int initialLives;
+	[SerializeField] private Text healthText;
 
     public static int score;
     public int startScore;
@@ -38,8 +38,10 @@ public class PlayerManager : MonoBehaviour
         addCostText.gameObject.SetActive(true);
         addCostText.gameObject.GetComponent<Animation>().Play();
     }
+
     public void addScore(int scoreValue)
     {
         score += scoreValue;
     }
 }
+

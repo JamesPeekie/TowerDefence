@@ -39,7 +39,6 @@ public class EnemyMovement : MonoBehaviour
     {
         speed = startSpeed * 0.3f;
         enemyRender.material.color = frozenColour;
-        Debug.Log("Ant Set To Blue");
     }
     
     void EnemyDeath()
@@ -74,7 +73,6 @@ public class EnemyMovement : MonoBehaviour
         
         speed = startSpeed;
         enemyRender.material.color = defaultColour;
-        Debug.Log("Ant Set To Black");
 
     }
 
