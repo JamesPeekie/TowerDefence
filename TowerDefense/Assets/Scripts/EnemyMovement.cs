@@ -8,7 +8,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
     [SerializeField] private float health = 200;
     [SerializeField] private int rewardValue = 10;
-    [SerializeField] private int scoreValue = 1;
     [SerializeField] private Color frozenColour;
     [SerializeField] private GameObject body;
 
@@ -39,14 +38,16 @@ public class EnemyMovement : MonoBehaviour
     {
         speed = startSpeed * 0.3f;
         enemyRender.material.color = frozenColour;
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of a2f158d... Basic Score System implimentation
     }
-    
+
     void EnemyDeath()
     {
         Destroy(gameObject);
-        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
-        playerManager.RewardCurrency(rewardValue);
-        playerManager.addScore(scoreValue);
+        FindObjectOfType<PlayerManager>().RewardCurrency(rewardValue);
     }
 
 	void Update ()
@@ -71,10 +72,13 @@ public class EnemyMovement : MonoBehaviour
 			target = Waypoints.points [waypointIndex];
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
 
 >>>>>>> 1133206852a5749fd5f2b763f24b5a6745149ebf
+=======
+>>>>>>> parent of a2f158d... Basic Score System implimentation
         speed = startSpeed;
         enemyRender.material.color = defaultColour;
 
