@@ -2,49 +2,52 @@
 
 public class EnemyMovement : MonoBehaviour
 {
-    private float speed;
+	private float speed;
 
-    [SerializeField] private float startSpeed = 5f; // Speed modifier for the enemy to move at
-    [SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
-    [SerializeField] private float health = 200;
-    [SerializeField] private int rewardValue = 10;
-    [SerializeField] private Color frozenColour;
-    [SerializeField] private GameObject body;
+	[SerializeField] private float startSpeed = 5f; // Speed modifier for the enemy to move at
+	[SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
+	[SerializeField] private float health = 200;
+	[SerializeField] private int rewardValue = 10;
+	[SerializeField] private int scoreValue = 1;
+	[SerializeField] private Color frozenColour;
+	[SerializeField] private GameObject body;
 
-    private Transform target; // intended waypoint to travel to
+	private Transform target; // intended waypoint to travel to
 	private int waypointIndex = 0; // value of the target to travel to
-    private Renderer enemyRender;
-    private Color defaultColour;
+	private Renderer enemyRender;
+	private Color defaultColour;
 
-    void Start()
+	void Start()
 	{   
-        enemyRender = body.GetComponent<Renderer>();
-        defaultColour = enemyRender.material.color;
-        speed = startSpeed;
-        enemyRender.material.color = defaultColour;
-        target = Waypoints.points[0]; // lists the first waypoint as the target
-    }
+		enemyRender = body.GetComponent<Renderer>();
+		defaultColour = enemyRender.material.color;
+		speed = startSpeed;
+		enemyRender.material.color = defaultColour;
+		target = Waypoints.points[0]; // lists the first waypoint as the target
+	}
 
-    public void TakeDamage(float amount)
-    {
-        health -= amount;
-        if (health <= 0)
-        {
-            EnemyDeath();
-        }
-    }
+	public void TakeDamage(float amount)
+	{
+		health -= amount;
+		if (health <= 0)
+		{
+			EnemyDeath();
+		}
+	}
 
-    public void Slow()
-    {
-        speed = startSpeed * 0.3f;
-        enemyRender.material.color = frozenColour;
-    }
+	public void Slow()
+	{
+		speed = startSpeed * 0.3f;
+		enemyRender.material.color = frozenColour;
+	}
 
-    void EnemyDeath()
-    {
-        Destroy(gameObject);
-        FindObjectOfType<PlayerManager>().RewardCurrency(rewardValue);
-    }
+	void EnemyDeath()
+	{
+		Destroy(gameObject);
+		PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+		playerManager.RewardCurrency(rewardValue);
+		playerManager.addScore(scoreValue);
+	}
 
 	void Update ()
 	{
@@ -61,20 +64,20 @@ public class EnemyMovement : MonoBehaviour
 
 			if (waypointIndex >= Waypoints.points.Length - 1f) 
 			{
-                ReachedEnd();
-                return;
-            }
+				ReachedEnd();
+				return;
+			}
 
 			target = Waypoints.points [waypointIndex];
 		}
 
-        speed = startSpeed;
-        enemyRender.material.color = defaultColour;
-    }
+		speed = startSpeed;
+		enemyRender.material.color = defaultColour;
+	}
 
-    void ReachedEnd()
-    {
-        Destroy(gameObject);
-        PlayerManager.lives--;
-    }
+	void ReachedEnd()
+	{
+		Destroy(gameObject);
+		PlayerManager.lives--;
+	}
 }
