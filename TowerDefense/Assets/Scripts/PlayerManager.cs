@@ -12,33 +12,33 @@ public class PlayerManager : MonoBehaviour
 	public int initialLives;
 	[SerializeField] private Text healthText;
 
-    public static int score;
-    public int startScore;
-    [SerializeField] private Text scoreText;
+	public static int score;
+	public int startScore;
+	[SerializeField] private Text scoreText;
 
-    private void Start()
-    {
-        money = walletMoney;
-        lives = initialLives;
-        healthText.gameObject.SetActive(false);
-        addCostText.gameObject.SetActive(false);
-    }
+	private void Start()
+	{
+		money = walletMoney;
+		lives = initialLives;
+		healthText.gameObject.SetActive(false);
+		addCostText.gameObject.SetActive(false);
+	}
 
 	void Update ()
-    {
+	{
 		walletText.text = string.Format("${0}", Mathf.RoundToInt(money).ToString());
-        healthText.text = string.Format("♥{0}", Mathf.RoundToInt(lives).ToString());
-    }
-    public void RewardCurrency(int rewardValue)
-    {
-        money += rewardValue;
-        addCostText.text = string.Format("+${0}", Mathf.RoundToInt(rewardValue).ToString());
-        addCostText.gameObject.SetActive(true);
-        addCostText.gameObject.GetComponent<Animation>().Play();
-    }
+		healthText.text = string.Format("♥{0}", Mathf.RoundToInt(lives).ToString());
+	}
+	public void RewardCurrency(int rewardValue)
+	{
+		money += rewardValue;
+		addCostText.text = string.Format("+${0}", Mathf.RoundToInt(rewardValue).ToString());
+		addCostText.gameObject.SetActive(true);
+		addCostText.gameObject.GetComponent<Animation>().Play();
+	}
 
-    public void addScore(int scoreValue)
-    {
-        score += scoreValue;
-    }
+	public void addScore(int scoreValue)
+	{
+		score += scoreValue;
+	}
 }
