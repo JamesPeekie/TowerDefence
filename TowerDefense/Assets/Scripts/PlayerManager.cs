@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		money = walletMoney;
 		lives = initialLives;
+		score = startScore;
 		healthText.gameObject.SetActive(false);
 		addCostText.gameObject.SetActive(false);
 	}
@@ -28,7 +29,9 @@ public class PlayerManager : MonoBehaviour
 	{
 		walletText.text = string.Format("${0}", Mathf.RoundToInt(money).ToString());
 		healthText.text = string.Format("♥{0}", Mathf.RoundToInt(lives).ToString());
+		scoreText.text = string.Format("Score = {0}", Mathf.RoundToInt(score).ToString());
 	}
+	
 	public void RewardCurrency(int rewardValue)
 	{
 		money += rewardValue;
