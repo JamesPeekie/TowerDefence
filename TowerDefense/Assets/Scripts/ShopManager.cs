@@ -14,6 +14,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Text turretRangeText;
     [SerializeField] private Text turretRateOfFireText;
     [SerializeField] private Text turretTurnSpeedText;
+    [SerializeField] private RawImage turretDisplayRenderTextureImage;
+    private RenderTexture turretDisplayRenderTexture;
 
     public TurretStats standardTurret;
     public TurretStats advancedTurret;
@@ -44,6 +46,7 @@ public class ShopManager : MonoBehaviour
     {
         InitializeDisplayTurrets();
         turretManager = TurretManager.singleton;
+        turretDisplayRenderTexture = turretDisplayRenderTextureImage.texture as RenderTexture;
         turretInfoPanel.SetActive(false);
         HideAllTurretDisplays();
     }
@@ -66,6 +69,11 @@ public class ShopManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             turretManager.HidePlacePath();
+        }
+
+        if (turretPlacementActive)
+        {
+            turretDisplayRenderTexture.Release();
         }
     }
 
@@ -146,6 +154,8 @@ public class ShopManager : MonoBehaviour
         HideAllTurretDisplays();
         turret.turretDisplay.SetActive(true);
 
+        turretDisplayRenderTextureImage.gameObject.SetActive(true);
+
         turretPlacementActive = true;
         turretInfoPanel.SetActive(false);
         turretManager.SelectTurretToBuild(turret);
@@ -195,5 +205,6 @@ public class ShopManager : MonoBehaviour
     {
         HideAllTurretDisplays();
         turretPlacementActive = false;
+        turretDisplayRenderTextureImage.gameObject.SetActive(false);
     }
 }
