@@ -475,6 +475,7 @@ MonoBehaviour:
   turretRangeText: {fileID: 1413518493}
   turretRateOfFireText: {fileID: 354063132}
   turretTurnSpeedText: {fileID: 2137330097}
+  turretDisplayRenderTextureImage: {fileID: 0}
   standardTurret:
     displayName: Level 1 Anti-Ant Cannon
     turretPrefab: {fileID: 1508040686309694, guid: c4db6bd141a74704bb1cd0c0526f0778,
@@ -2813,7 +2814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.884}
-  m_EffectDistance: {x: -1, y: -1}
+  m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!1 &475174017
 GameObject:
@@ -3049,6 +3050,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 541613236}
+  - component: {fileID: 541613237}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -3070,6 +3072,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &541613237
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541613235}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 3e7e0c12cdeca5b438e897e214d73d1b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 3e7e0c12cdeca5b438e897e214d73d1b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &546274224
 Prefab:
   m_ObjectHideFlags: 0
@@ -5950,7 +5967,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 621099585}
-  m_LocalRotation: {x: -0.60073346, y: -0.37298733, z: -0.37298703, w: -0.6007334}
+  m_LocalRotation: {x: -0.6007334, y: -0.3729873, z: -0.372987, w: -0.60073334}
   m_LocalPosition: {x: -14.700002, y: 14.700007, z: 17.400002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8556,7 +8573,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 992198059}
-  m_LocalRotation: {x: -0.60073346, y: -0.37298733, z: -0.37298703, w: -0.6007334}
+  m_LocalRotation: {x: -0.6007334, y: -0.3729873, z: -0.372987, w: -0.60073334}
   m_LocalPosition: {x: -14.700002, y: 14.700007, z: 17.400002}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.1}
   m_Children:
@@ -8893,7 +8910,7 @@ RectTransform:
   m_GameObject: {fileID: 1053839623}
   m_LocalRotation: {x: -0.45451945, y: 0.54167527, z: 0.45451945, w: 0.54167527}
   m_LocalPosition: {x: -1.4400005, y: 1.3999996, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: -0.05, y: 0.05, z: 1}
   m_Children:
   - {fileID: 1499862104}
   - {fileID: 1553933284}
@@ -9961,7 +9978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.884}
-  m_EffectDistance: {x: -1, y: -1}
+  m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!1 &1293529789
 GameObject:
@@ -11058,7 +11075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: -1, y: -1}
+  m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!114 &1499862106
 MonoBehaviour:
