@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		walletText.text = string.Format("${0}", Mathf.RoundToInt(money).ToString());
 		healthText.text = string.Format("♥{0}", Mathf.RoundToInt(lives).ToString());
-		scoreText.text = string.Format("Score = {0}", Mathf.RoundToInt(score).ToString());
+		scoreText.text = string.Format(Mathf.RoundToInt(score).ToString());
 	}
 	
 	public void RewardCurrency(int rewardValue)
