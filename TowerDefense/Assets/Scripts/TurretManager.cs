@@ -6,15 +6,14 @@ using UnityEngine.UI;
 public class TurretManager : MonoBehaviour
 {
 	[SerializeField] private GameObject placePath;
-	[SerializeField] private Text inUseText;
 	[SerializeField] private Text brokeText;
 	[SerializeField] private Text removeCostText;
-	[SerializeField] private Color frozenColour;
 
 	public static TurretManager singleton;
 	private TurretStats turretToBuild;
-	
-	void Awake ()
+    private Node selectedNode;
+
+    void Awake ()
 	{
 		if (singleton != null)
 		{
@@ -28,16 +27,8 @@ public class TurretManager : MonoBehaviour
 	void Start()
 	{
 		placePath.SetActive(false);
-		inUseText.gameObject.SetActive(false);
 		brokeText.gameObject.SetActive(false);
 		removeCostText.gameObject.SetActive(false);
-	}
-
-	public void ShowInUseMessage() // Is called when a node is already occupied by a turret
-	{
-		inUseText.gameObject.SetActive(true); // Activates text telling the player the turret space is in use
-		inUseText.gameObject.GetComponent<Animation>().Play(); // Plays the animation for the text activated
-		HidePlacePath();
 	}
 
 	public void BuildTurretOn(Node node) 
@@ -76,15 +67,25 @@ public class TurretManager : MonoBehaviour
 		}
 	}
 
-	public void SelectTurretToBuild(TurretStats turret) // Vets the turret currently defined by this script as the listing for the stats script
+    public void SelectNode(Node node)
+    {
+        selectedNode = node;
+        placePath.SetActive(false);
+        FindObjectOfType<ShopManager>().DeActivateTurretPlacement();
+
+    }
+
+    public void SelectTurretToBuild(TurretStats turret) // Vets the turret currently defined by this script as the listing for the stats script
 	{
 		turretToBuild = turret;
 		placePath.SetActive(true);
-	}
+        selectedNode = null;
+    }
 
 	public void HidePlacePath()
 	{
 		placePath.SetActive(false);
-		FindObjectOfType<ShopManager>().DeActivateTurretPlacement(); // Searches the scene for an object that has the script on it, and returns it with all its assigned values
+		FindObjectOfType<ShopManager>().DeActivateTurretPlacement();
+        selectedNode = null;
 	}
 }

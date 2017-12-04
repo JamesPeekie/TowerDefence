@@ -39,19 +39,19 @@ public class Node : MonoBehaviour
 	
 	void OnMouseDown()
 	{
-		if(!turretManager.CanBuild)
-		{
-			return;
-		}
-
+		
 		if (turret != null)
 		{
-			Debug.Log("Can't place Turret - Build spot in use!");
-			turretManager.ShowInUseMessage();
+            turretManager.SelectNode(this);
 			return;
 		}
 
-		turretManager.BuildTurretOn(this);
+        if (!turretManager.CanBuild)
+        {
+            return;
+        }
+
+        turretManager.BuildTurretOn(this);
 		ShopManager.singleton.TurretPlaced();
 	}
 
@@ -59,4 +59,9 @@ public class Node : MonoBehaviour
 	{
 		nodeRenderer.material.color = originalColour;
 	}
+
+    private void SelectNode()
+    {
+            turretManager.SelectNode(this);
+    }
 }

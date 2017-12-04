@@ -21,7 +21,6 @@ public class PlayerManager : MonoBehaviour
 		money = walletMoney;
 		lives = initialLives;
 		score = startScore;
-		healthText.gameObject.SetActive(false);
 		addCostText.gameObject.SetActive(false);
 	}
 
