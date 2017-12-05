@@ -35,6 +35,8 @@ public class Turret : MonoBehaviour
 	[SerializeField] private int DamageOverTime = 30;
 
 	private AudioController audioController; // References the audio script.
+	
+	private Node node;
 
 	void Start () 
 	{
@@ -108,6 +110,11 @@ public class Turret : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+    
+    public void SetNode(Node node)
+    {
+    	this.node = node;
     }
 
     void FireBeam()
