@@ -47,6 +47,8 @@ public class TurretManager : MonoBehaviour
 		removeCostText.gameObject.SetActive(true);
 		removeCostText.gameObject.GetComponent<Animation>().Play();
 		GameObject turret = Instantiate(turretToBuild.turretPrefab, node.GetBuildPosition(), Quaternion.identity);
+		Turret turretComponent = turret.GetComponent<Turret>();
+		turretComponent.SetNode(node);
 		node.turret = turret;
 		HidePlacePath();
 	}
