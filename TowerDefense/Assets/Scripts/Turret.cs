@@ -20,8 +20,9 @@ public class Turret : MonoBehaviour
 	[SerializeField] private Transform gunBarrel; // Transform that animates on firing and bullets spawn at.
 	[SerializeField] private ParticleSystem impactEffect;
 	[SerializeField] private ParticleSystem shootEffect;
+    public GameObject nodeOn;
 
-	[Space]
+    [Space]
 
 	[Header("Bullet")]
 	[SerializeField] private GameObject bullet; // Bullet object to spawn on firing
@@ -36,7 +37,7 @@ public class Turret : MonoBehaviour
 
 	private AudioController audioController; // References the audio script.
 	
-	private Node node;
+	public Node node;
 
 	void Start () 
 	{
@@ -153,5 +154,10 @@ public class Turret : MonoBehaviour
 
 		audioController.PlaySound("Shoot"); // Play the shoot sound.
 	}
+
+    void OnMouseDown()
+    {
+        node.SelectNode();
+    }
 }
 

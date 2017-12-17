@@ -60,7 +60,7 @@ public class Node : MonoBehaviour
 		nodeRenderer.material.color = originalColour;
 	}
 
-    private void SelectNode()
+    public void SelectNode()
     {
             turretManager.SelectNode(this);
     }
