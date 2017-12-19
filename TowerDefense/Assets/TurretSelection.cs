@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TurretSelection : MonoBehaviour {
+public class TurretNodeSelection : MonoBehaviour {
 
     private Node target;
 
-    public void SetNodeTarget ()
+    public void SetNodeTarget (Node selectedNode)
     {
+        target = selectedNode;
 
+        transform.position = target.GetBuildPosition();
     }
 
 }

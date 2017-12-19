@@ -9,6 +9,7 @@ public class TurretManager : MonoBehaviour
 	[SerializeField] private Text brokeText;
 	[SerializeField] private Text removeCostText;
 
+    public TurretNodeSelection turretSelection;
 	public static TurretManager singleton;
 	private TurretStats turretToBuild;
     private Node selectedNode;
@@ -74,6 +75,7 @@ public class TurretManager : MonoBehaviour
         selectedNode = node;
         placePath.SetActive(false);
         FindObjectOfType<ShopManager>().DeActivateTurretPlacement();
+        turretSelection.SetNodeTarget(node);
 
     }
 
