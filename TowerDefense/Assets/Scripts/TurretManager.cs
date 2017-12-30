@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TurretManager : MonoBehaviour
@@ -9,7 +7,7 @@ public class TurretManager : MonoBehaviour
 	[SerializeField] private Text brokeText;
 	[SerializeField] private Text removeCostText;
 
-    public TurretNodeSelection turretSelection;
+    public TurretSelection turretSelection;
 	public static TurretManager singleton;
 	private TurretStats turretToBuild;
     private Node selectedNode;
@@ -75,8 +73,6 @@ public class TurretManager : MonoBehaviour
         selectedNode = node;
         placePath.SetActive(false);
         FindObjectOfType<ShopManager>().DeActivateTurretPlacement();
-        turretSelection.SetNodeTarget(node);
-
     }
 
     public void SelectTurretToBuild(TurretStats turret) // Vets the turret currently defined by this script as the listing for the stats script

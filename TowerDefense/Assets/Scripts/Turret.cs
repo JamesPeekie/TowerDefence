@@ -157,7 +157,7 @@ public class Turret : MonoBehaviour
 
     void OnMouseDown()
     {
-        node.SelectNode();
+        TurretManager.singleton.turretSelection.SetNodeTarget(node);
     }
 }
 

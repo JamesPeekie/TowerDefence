@@ -15,17 +15,17 @@ public class Node : MonoBehaviour
 
 	public Vector3 GetBuildPosition()
 	{
-		return transform.position + positionOffset;
+		return transform.GetChild(0).position + positionOffset;
 	}
 
 	void Start()
 	{
-        nodeRenderer = GetComponent<Renderer>();
+        nodeRenderer = GetComponentInChildren<Renderer>();
         originalColour = nodeRenderer.material.color;
 		turretManager = TurretManager.singleton;
 	}
 
-	void OnMouseEnter()
+	public void HandleMouseEnter()
 	{
 		if (turretManager.CanBuild && turretManager.HasMoney && turret == null)
         { 
@@ -37,9 +37,8 @@ public class Node : MonoBehaviour
         }
 	}
 	
-	void OnMouseDown()
+	public void HandleMouseDown()
 	{
-		
 		if (turret != null)
 		{
             turretManager.SelectNode(this);
@@ -55,13 +54,13 @@ public class Node : MonoBehaviour
 		ShopManager.singleton.TurretPlaced();
 	}
 
-	void OnMouseExit()
+	public void HandleMouseExit()
 	{
 		nodeRenderer.material.color = originalColour;
 	}
 
     public void SelectNode()
     {
-            turretManager.SelectNode(this);
+        turretManager.SelectNode(this);
     }
 }
