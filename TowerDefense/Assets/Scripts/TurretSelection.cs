@@ -11,7 +11,8 @@ public class TurretSelection : MonoBehaviour
         anim = GetComponent<Animation>();
         gameObject.SetActive(false);
     }
-    private void Update()
+
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {

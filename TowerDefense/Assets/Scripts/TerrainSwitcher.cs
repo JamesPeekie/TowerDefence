@@ -2,14 +2,14 @@
 
 public class TerrainSwitcher : MonoBehaviour
 {
-	[SerializeField] private GameObject desert;
-	[SerializeField] private GameObject grass;
-	[SerializeField] private GameObject ice;
+    [SerializeField] private GameObject desert;
+    [SerializeField] private GameObject grass;
+    [SerializeField] private GameObject ice;
 
-	void Start()
+    void Start()
     {
         ActivateTerrain(grass);
-	}
+    }
 
     void ActivateTerrain(GameObject terrain)
     {
@@ -24,18 +24,18 @@ public class TerrainSwitcher : MonoBehaviour
         ice.SetActive(false);
     }
 
-	public void ActivateGrassTerrain()
+    public void ActivateGrassTerrain()
     {
         ActivateTerrain(grass);
-	}
+    }
 
-	public void ActivateDesertTerrain()
+    public void ActivateDesertTerrain()
     {
         ActivateTerrain(desert);
-	}
+    }
 
-	public void ActivateIceTerrain()
+    public void ActivateIceTerrain()
     {
         ActivateTerrain(ice);
-	}
+    }
 }

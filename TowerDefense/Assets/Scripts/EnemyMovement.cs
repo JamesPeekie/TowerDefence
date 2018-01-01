@@ -2,82 +2,82 @@
 
 public class EnemyMovement : MonoBehaviour
 {
-	private float speed;
+    private float speed;
 
-	[SerializeField] private float startSpeed = 5f; // Speed modifier for the enemy to move at
-	[SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
-	[SerializeField] private float health = 200;
-	[SerializeField] private int rewardValue = 10;
-	[SerializeField] private int scoreValue = 1;
-	[SerializeField] private Color frozenColour;
-	[SerializeField] private GameObject body;
+    [SerializeField] private float startSpeed = 5f; // Speed modifier for the enemy to move at
+    [SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
+    [SerializeField] private float health = 200;
+    [SerializeField] private int rewardValue = 10;
+    [SerializeField] private int scoreValue = 1;
+    [SerializeField] private Color frozenColour;
+    [SerializeField] private GameObject body;
 
-	private Transform target; // intended waypoint to travel to
-	private int waypointIndex = 0; // value of the target to travel to
-	private Renderer enemyRender;
-	private Color defaultColour;
+    private Transform target; // intended waypoint to travel to
+    private int waypointIndex = 0; // value of the target to travel to
+    private Renderer enemyRender;
+    private Color defaultColour;
 
-	void Start()
-	{   
-		enemyRender = body.GetComponent<Renderer>();
-		defaultColour = enemyRender.material.color;
-		speed = startSpeed;
-		enemyRender.material.color = defaultColour;
-		target = Waypoints.points[0]; // lists the first waypoint as the target
-	}
+    void Start()
+    {
+        enemyRender = body.GetComponent<Renderer>();
+        defaultColour = enemyRender.material.color;
+        speed = startSpeed;
+        enemyRender.material.color = defaultColour;
+        target = Waypoints.points[0]; // lists the first waypoint as the target
+    }
 
-	public void TakeDamage(float amount)
-	{
-		health -= amount;
-		if (health <= 0)
-		{
-			EnemyDeath();
-		}
-	}
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            EnemyDeath();
+        }
+    }
 
-	public void Slow()
-	{
-		speed = startSpeed * 0.3f;
-		enemyRender.material.color = frozenColour;
-	}
+    public void Slow()
+    {
+        speed = startSpeed * 0.3f;
+        enemyRender.material.color = frozenColour;
+    }
 
-	void EnemyDeath()
-	{
-		Destroy(gameObject);
-		PlayerManager playerManager = FindObjectOfType<PlayerManager>();
-		playerManager.RewardCurrency(rewardValue);
-		playerManager.addScore(scoreValue);
-	}
+    void EnemyDeath()
+    {
+        Destroy(gameObject);
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.RewardCurrency(rewardValue);
+        playerManager.addScore(scoreValue);
+    }
 
-	void Update ()
-	{
-		Vector3 dir = target.position - transform.position;
-		Quaternion lookRotation = Quaternion.LookRotation (dir);
-		Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
-		transform.rotation = Quaternion.Euler (0f, rotation.y, 0f);
-		transform.Translate (dir.normalized * speed * Time.deltaTime, Space.World);
-		Debug.DrawLine (transform.position, target.position);
+    void Update()
+    {
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
+        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        Debug.DrawLine(transform.position, target.position);
 
-		if (Vector3.Distance (transform.position, target.position) <= 0.4f) 
-		{
-			waypointIndex++; 
+        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+        {
+            waypointIndex++;
 
-			if (waypointIndex >= Waypoints.points.Length - 1f) 
-			{
-				ReachedEnd();
-				return;
-			}
+            if (waypointIndex >= Waypoints.points.Length - 1f)
+            {
+                ReachedEnd();
+                return;
+            }
 
-			target = Waypoints.points [waypointIndex];
-		}
+            target = Waypoints.points[waypointIndex];
+        }
 
-		speed = startSpeed;
-		enemyRender.material.color = defaultColour;
-	}
+        speed = startSpeed;
+        enemyRender.material.color = defaultColour;
+    }
 
-	void ReachedEnd()
-	{
-		Destroy(gameObject);
-		PlayerManager.lives--;
-	}
+    void ReachedEnd()
+    {
+        Destroy(gameObject);
+        PlayerManager.lives--;
+    }
 }

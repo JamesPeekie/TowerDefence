@@ -167,7 +167,7 @@ public class ShopManager : MonoBehaviour
     }
 
     public void ActivateAdvancedTurretPlacement()
-    { 
+    {
         ActivatePlacement(advancedTurret);
     }
 

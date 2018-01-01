@@ -2,48 +2,48 @@
 
 public class Node : MonoBehaviour
 {
-	[SerializeField] private Color hoverColour;
-	[SerializeField] private Color cannotPlaceColour;
-	[SerializeField] private Vector3 positionOffset;
-	
-	public GameObject turret;
+    [SerializeField] private Color hoverColour;
+    [SerializeField] private Color cannotPlaceColour;
+    [SerializeField] private Vector3 positionOffset;
 
-	private Color originalColour;
-	private Renderer nodeRenderer;
+    public GameObject turret;
 
-	private TurretManager turretManager;
+    private Color originalColour;
+    private Renderer nodeRenderer;
 
-	public Vector3 GetBuildPosition()
-	{
-		return transform.GetChild(0).position + positionOffset;
-	}
+    private TurretManager turretManager;
 
-	void Start()
-	{
+    public Vector3 GetBuildPosition()
+    {
+        return transform.GetChild(0).position + positionOffset;
+    }
+
+    void Start()
+    {
         nodeRenderer = GetComponentInChildren<Renderer>();
         originalColour = nodeRenderer.material.color;
-		turretManager = TurretManager.singleton;
-	}
+        turretManager = TurretManager.singleton;
+    }
 
-	public void HandleMouseEnter()
-	{
-		if (turretManager.CanBuild && turretManager.HasMoney && turret == null)
-        { 
+    public void HandleMouseEnter()
+    {
+        if (turretManager.CanBuild && turretManager.HasMoney && turret == null)
+        {
             nodeRenderer.material.color = hoverColour;
         }
         else
         {
             nodeRenderer.material.color = cannotPlaceColour;
         }
-	}
-	
-	public void HandleMouseDown()
-	{
-		if (turret != null)
-		{
+    }
+
+    public void HandleMouseDown()
+    {
+        if (turret != null)
+        {
             turretManager.SelectNode(this);
-			return;
-		}
+            return;
+        }
 
         if (!turretManager.CanBuild)
         {
@@ -51,13 +51,13 @@ public class Node : MonoBehaviour
         }
 
         turretManager.BuildTurretOn(this);
-		ShopManager.singleton.TurretPlaced();
-	}
+        ShopManager.singleton.TurretPlaced();
+    }
 
-	public void HandleMouseExit()
-	{
-		nodeRenderer.material.color = originalColour;
-	}
+    public void HandleMouseExit()
+    {
+        nodeRenderer.material.color = originalColour;
+    }
 
     public void SelectNode()
     {
