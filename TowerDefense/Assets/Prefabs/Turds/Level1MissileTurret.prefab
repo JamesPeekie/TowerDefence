@@ -200,6 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4895849261996096}
   - component: {fileID: 114584470376911786}
+  - component: {fileID: 65343510182098822}
   m_Layer: 0
   m_Name: Level1MissileTurret
   m_TagString: Untagged
@@ -354,7 +355,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908177530389846}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.25, y: 0.298, z: -17.67}
+  m_LocalPosition: {x: -14.357414, y: -0.5, z: -27.43727}
   m_LocalScale: {x: 0.08, y: 0.08000003, z: 0.08000003}
   m_Children:
   - {fileID: 4744087550734180}
@@ -661,6 +662,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1187713169975400}
   m_Mesh: {fileID: 4300002, guid: dc87277eb534d1f42a50cd58e76704b5, type: 3}
+--- !u!65 &65343510182098822
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908177530389846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 32.63, y: 31.18, z: 28.63}
+  m_Center: {x: 0, y: 14.34, z: 0}
 --- !u!111 &111604489633717502
 Animation:
   m_ObjectHideFlags: 1
@@ -694,6 +707,12 @@ MonoBehaviour:
   enemyTag: Enemy
   partToRotate: {fileID: 4540574274022108}
   gunBarrel: {fileID: 4609753778772814}
+  impactEffect: {fileID: 0}
+  shootEffect: {fileID: 0}
+  nodeOn: {fileID: 0}
   bullet: {fileID: 1697442994923428, guid: 37a2da28801bdea46861c34507178293, type: 2}
   useLaser: 0
+  slowsEnemy: 0
   laserDisplay: {fileID: 0}
+  DamageOverTime: 30
+  node: {fileID: 0}

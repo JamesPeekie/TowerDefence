@@ -9,10 +9,19 @@ public class TurretSelection : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animation>();
+        gameObject.SetActive(false);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void SetNodeTarget(Node selectedNode)
     {
+        gameObject.SetActive(true);
         target = selectedNode;
 
         transform.position = target.GetBuildPosition();
