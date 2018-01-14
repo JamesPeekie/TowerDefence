@@ -13,16 +13,16 @@ public class NodeGraphicsHandler : MonoBehaviour
 
     void OnMouseDown()
     {
-        parentNode.HandleMouseDown();
+        parentNode.BuildTurret();
     }
 
     void OnMouseEnter()
     {
-        parentNode.HandleMouseEnter();
+        parentNode.HoverNode();
     }
 
     void OnMouseExit()
     {
-        parentNode.HandleMouseExit();
+        parentNode.UnHoverNode();
     }
 }

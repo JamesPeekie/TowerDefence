@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class TurretManager : MonoBehaviour
@@ -9,8 +10,7 @@ public class TurretManager : MonoBehaviour
 
     public TurretSelection turretSelection;
     public static TurretManager singleton;
-    private TurretStats turretToBuild;
-    private Node selectedNode;
+    [HideInInspector] public TurretStats turretToBuild;
 
     void Awake()
     {
@@ -30,26 +30,15 @@ public class TurretManager : MonoBehaviour
         removeCostText.gameObject.SetActive(false);
     }
 
-    public void BuildTurretOn(Node node)
+    public void ShowPlacePath()
     {
-        removeCostText.text = string.Format("-${0}", Mathf.RoundToInt(turretToBuild.cost).ToString()); // Sets text showing the player how much money has been removed
+        placePath.SetActive(true);
+    }
 
-        if (PlayerManager.money < turretToBuild.cost) // Checks if you have no money left.
-        {
-            brokeText.gameObject.SetActive(true);
-            brokeText.gameObject.GetComponent<Animation>().Play();
-            HidePlacePath();
-            return;
-        }
-
-        PlayerManager.money -= turretToBuild.cost;
-        removeCostText.gameObject.SetActive(true);
-        removeCostText.gameObject.GetComponent<Animation>().Play();
-        GameObject turret = Instantiate(turretToBuild.turretPrefab, node.GetBuildPosition(), Quaternion.identity);
-        Turret turretComponent = turret.GetComponent<Turret>();
-        turretComponent.SetNode(node);
-        node.turret = turret;
-        HidePlacePath();
+    public void HidePlacePath()
+    {
+        placePath.SetActive(false);
+        FindObjectOfType<ShopManager>().DeActivateTurretPlacement();
     }
 
     public bool CanBuild // Variable set to result of whether the turret is not empty
@@ -68,24 +57,23 @@ public class TurretManager : MonoBehaviour
         }
     }
 
-    public void SelectNode(Node node)
+    public void HandleTurretPurchased(TurretStats turretToBuild)
     {
-        selectedNode = node;
-        placePath.SetActive(false);
-        FindObjectOfType<ShopManager>().DeActivateTurretPlacement();
+        removeCostText.text = string.Format("-${0}", Mathf.RoundToInt(turretToBuild.cost).ToString()); // Sets text showing the player how much money has been removed.
+        removeCostText.gameObject.SetActive(true);
+        removeCostText.gameObject.GetComponent<Animation>().Play();
+    }
+
+    public void HandleNotEnoughMoney()
+    {
+        brokeText.gameObject.SetActive(true);
+        brokeText.gameObject.GetComponent<Animation>().Play();
+        HidePlacePath();
     }
 
     public void SelectTurretToBuild(TurretStats turret) // Vets the turret currently defined by this script as the listing for the stats script
     {
         turretToBuild = turret;
         placePath.SetActive(true);
-        selectedNode = null;
-    }
-
-    public void HidePlacePath()
-    {
-        placePath.SetActive(false);
-        FindObjectOfType<ShopManager>().DeActivateTurretPlacement();
-        selectedNode = null;
     }
 }

@@ -365,6 +365,17 @@ MonoBehaviour:
   brokeText: {fileID: 1359156377}
   removeCostText: {fileID: 2081290519}
   turretSelection: {fileID: 541613238}
+  turretToBuild:
+    displayName: 
+    turretPrefab: {fileID: 0}
+    turretDisplay: {fileID: 0}
+    cost: 0
+    damage: 0
+    range: 0
+    rateOfFire: 0
+    turnSpeed: 0
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
 --- !u!114 &35867673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +497,8 @@ MonoBehaviour:
     range: 0
     rateOfFire: 0
     turnSpeed: 0
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
   advancedTurret:
     displayName: Level 2 Anti-Ant Cannon
     turretPrefab: {fileID: 1655703990734678, guid: 5b684dcae79295249abf33303aad543d,
@@ -496,6 +509,8 @@ MonoBehaviour:
     range: 0
     rateOfFire: 0
     turnSpeed: 0
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
   standardMissileTurret:
     displayName: Level 1 Missile Launcher
     turretPrefab: {fileID: 1908177530389846, guid: 8c797fb8ecde34c41912c5ac695e9f02,
@@ -506,6 +521,8 @@ MonoBehaviour:
     range: 0
     rateOfFire: 0
     turnSpeed: 0
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
   advancedMissileTurret:
     displayName: Level 2 Missile Launcher
     turretPrefab: {fileID: 1129187170258000, guid: 14134ee18f83e18429850b73fc69d936,
@@ -516,6 +533,8 @@ MonoBehaviour:
     range: 0
     rateOfFire: 0
     turnSpeed: 0
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
   standardLaserTurret:
     displayName: Level 1 Laser Turret
     turretPrefab: {fileID: 1768733825095450, guid: a7ca5b4312a68e2478885a265a4db37e,
@@ -526,6 +545,8 @@ MonoBehaviour:
     range: 0
     rateOfFire: 0
     turnSpeed: 0
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
   advancedLaserTurret:
     displayName: Level 2 Laser Turret
     turretPrefab: {fileID: 1051379841118072, guid: 2027af9ae28341344b322e0e07b9f367,
@@ -536,6 +557,8 @@ MonoBehaviour:
     range: 0
     rateOfFire: 0
     turnSpeed: 0
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
   standardIceTurret:
     displayName: Level 1 Ant Freezer
     turretPrefab: {fileID: 1479469135699520, guid: ba5ed611432055b418abd1c7e16c3ce9,
@@ -546,6 +569,8 @@ MonoBehaviour:
     range: 20
     rateOfFire: 0
     turnSpeed: 20
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
   advancedIceTurret:
     displayName: Level 1 Ant Freezer
     turretPrefab: {fileID: 1130287806590470, guid: 0d34700e792725f4da152bf36c9d99db,
@@ -556,6 +581,8 @@ MonoBehaviour:
     range: 20
     rateOfFire: 0
     turnSpeed: 20
+    upgradeCost: 0
+    upgradedPrefab: {fileID: 0}
   turretPlacementActive: 0
 --- !u!1001 &57936527
 Prefab:
@@ -3093,7 +3120,7 @@ GameObject:
   - component: {fileID: 469405909}
   - component: {fileID: 469405912}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: SellButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3129,7 +3156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3155,7 +3182,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 469405910}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 541613238}
+        m_MethodName: Sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &469405910
@@ -3179,7 +3217,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b6979afbd1561dd4c97f3bbd642dcc40, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -7188,8 +7226,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -0.05, y: 0.05, z: 1}
   m_Children:
-  - {fileID: 1499862104}
   - {fileID: 1553933284}
+  - {fileID: 1499862104}
   m_Father: {fileID: 541613236}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -80, y: 90, z: 0}
@@ -7244,7 +7282,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1224054339}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -8270,7 +8308,7 @@ GameObject:
   - component: {fileID: 1277107338}
   - component: {fileID: 1277107341}
   m_Layer: 0
-  m_Name: Button
+  m_Name: UpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8306,7 +8344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -8332,7 +8370,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1277107339}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 541613238}
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1277107339
@@ -8356,7 +8405,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 89d97e9631c40994c8f6bd5df19fc723, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -9580,7 +9629,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1053839624}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10073,7 +10122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1553933284}
   - component: {fileID: 1553933287}
-  - component: {fileID: 1553933286}
   - component: {fileID: 1553933285}
   m_Layer: 0
   m_Name: Buttons
@@ -10095,7 +10143,7 @@ RectTransform:
   - {fileID: 1277107337}
   - {fileID: 469405908}
   m_Father: {fileID: 1053839624}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10124,33 +10172,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
---- !u!114 &1553933286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1553933283}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!222 &1553933287
 CanvasRenderer:
   m_ObjectHideFlags: 0

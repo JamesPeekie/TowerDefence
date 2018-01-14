@@ -11,4 +11,6 @@ public class TurretStats
     public float range; // The range the turret has.
     public float rateOfFire; // The rate of fire of the turret.
     public float turnSpeed; // The turn speed of the turret.
+    public int upgradeCost; // The cost of upgrading the turret.
+    public GameObject upgradedPrefab; // The prefab that is instantiated when the turret is upgraded.
 }

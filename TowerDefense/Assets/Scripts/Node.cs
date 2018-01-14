@@ -6,7 +6,9 @@ public class Node : MonoBehaviour
     [SerializeField] private Color cannotPlaceColour;
     [SerializeField] private Vector3 positionOffset;
 
-    public GameObject turret;
+    [HideInInspector] public GameObject turret;
+    [HideInInspector] public TurretStats turretStats;
+    [HideInInspector] public bool isUpgraded;
 
     private Color originalColour;
     private Renderer nodeRenderer;
@@ -25,7 +27,7 @@ public class Node : MonoBehaviour
         turretManager = TurretManager.singleton;
     }
 
-    public void HandleMouseEnter()
+    public void HoverNode()
     {
         if (turretManager.CanBuild && turretManager.HasMoney && turret == null)
         {
@@ -37,30 +39,61 @@ public class Node : MonoBehaviour
         }
     }
 
-    public void HandleMouseDown()
+    public void UnHoverNode()
     {
-        if (turret != null)
-        {
-            turretManager.SelectNode(this);
-            return;
-        }
+        nodeRenderer.material.color = originalColour;
+    }
+
+    public void BuildTurret()
+    {
+        TurretStats turretToBuild = turretManager.turretToBuild;
 
         if (!turretManager.CanBuild)
         {
             return;
         }
 
-        turretManager.BuildTurretOn(this);
+
+        if (PlayerManager.money < turretToBuild.cost) // Checks if you have no money left.
+        {
+            turretManager.HandleNotEnoughMoney();
+            return;
+        }
+
+        turretManager.HandleTurretPurchased(turretToBuild);
+
+        PlayerManager.money -= turretToBuild.cost;
+        GameObject turret = Instantiate(turretToBuild.turretPrefab, GetBuildPosition(), Quaternion.identity);
+        Turret turretComponent = turret.GetComponent<Turret>();
+        turretComponent.SetNode(this);
+        this.turret = turret;
+        turretManager.HidePlacePath();
+
         ShopManager.singleton.TurretPlaced();
     }
 
-    public void HandleMouseExit()
+    public void UpgradeTurret()
     {
-        nodeRenderer.material.color = originalColour;
-    }
+        if (PlayerManager.money < turretStats.upgradeCost) // Checks if you have no money left.
+        {
+            turretManager.HandleNotEnoughMoney();
+            return;
+        }
 
-    public void SelectNode()
-    {
-        turretManager.SelectNode(this);
+        PlayerManager.money -= turretStats.upgradeCost;
+
+        // Get rid of old turret
+        Destroy(this.turret);
+
+        // Build new, upgraded one.
+        GameObject turret = Instantiate(turretStats.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        Turret turretComponent = turret.GetComponent<Turret>();
+        turretComponent.SetNode(this);
+        this.turret = turret;
+        turretManager.HidePlacePath();
+
+        isUpgraded = true;
+
+        ShopManager.singleton.TurretPlaced();
     }
 }

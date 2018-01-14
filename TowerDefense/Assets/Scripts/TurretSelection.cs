@@ -28,4 +28,15 @@ public class TurretSelection : MonoBehaviour
         transform.position = target.GetBuildPosition();
         anim.Play("TurretUiSpawnIn");
     }
+    
+    public void Upgrade()
+    {
+        Debug.Log("HI?!");
+        target.UpgradeTurret();
+    }
+
+    public void Sell()
+    {
+
+    }
 }
