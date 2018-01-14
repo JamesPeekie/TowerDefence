@@ -31,12 +31,13 @@ public class TurretSelection : MonoBehaviour
     
     public void Upgrade()
     {
-        Debug.Log("HI?!");
+        Debug.Log("Upgrade");
         target.UpgradeTurret();
     }
 
     public void Sell()
     {
-
+        Debug.Log("Sell!");
+        target.SellTurret();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -6,22 +7,26 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] private float startSpeed = 5f; // Speed modifier for the enemy to move at
     [SerializeField] private float turnspeed = 3.5f; // Speed at wich to turn to the next waypoint at 
-    [SerializeField] private float health = 200;
+    [SerializeField] private float startHealth = 200;
     [SerializeField] private int rewardValue = 10;
     [SerializeField] private int scoreValue = 1;
     [SerializeField] private Color frozenColour;
     [SerializeField] private GameObject body;
+    [SerializeField] private Image healthBar;
+
 
     private Transform target; // intended waypoint to travel to
     private int waypointIndex = 0; // value of the target to travel to
     private Renderer enemyRender;
     private Color defaultColour;
+    private float health;
 
     void Start()
     {
         enemyRender = body.GetComponent<Renderer>();
         defaultColour = enemyRender.material.color;
         speed = startSpeed;
+        health = startHealth;
         enemyRender.material.color = defaultColour;
         target = Waypoints.points[0]; // lists the first waypoint as the target
     }
@@ -29,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
+        healthBar.fillAmount = health / startHealth;
         if (health <= 0)
         {
             EnemyDeath();
@@ -37,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Slow()
     {
-        speed = startSpeed * 0.3f;
+        speed = startSpeed * 0.7f;
         enemyRender.material.color = frozenColour;
     }
 
@@ -47,6 +53,7 @@ public class EnemyMovement : MonoBehaviour
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.RewardCurrency(rewardValue);
         playerManager.addScore(scoreValue);
+        WaveSpawner.enemiesInGame--;
     }
 
     void Update()
@@ -79,5 +86,6 @@ public class EnemyMovement : MonoBehaviour
     {
         Destroy(gameObject);
         PlayerManager.lives--;
+        WaveSpawner.enemiesInGame--;
     }
 }

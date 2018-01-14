@@ -4,13 +4,17 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
+
+    public static int enemiesInGame;
+
     [SerializeField] private Transform spawnPoint;
+
+    public WaveDetails[] waves;
 
     [SerializeField] private float timeBetweenWaves = 5f;
     private float countdown = 2f;
     public Text waveCountdownText;
-    private int waveNumber = 0;
+    public static int waveNumber = 0;
     [SerializeField] private Color textColour;
 
     void Start()
@@ -20,35 +24,49 @@ public class WaveSpawner : MonoBehaviour
 
     void Update()
     {
-        countdown -= Time.deltaTime;
+        if (enemiesInGame > 0)
+        {
+            waveCountdownText.text = " ";
+            return;
+        }
 
         if (countdown <= 3 && countdown > 0)
         {
             waveCountdownText.color = Color.red;
         }
+
         else if (countdown <= 0)
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
             waveCountdownText.color = textColour;
+            return;
         }
 
+        countdown -= Time.deltaTime;
+        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
         waveCountdownText.text = Mathf.Round(countdown).ToString();
+
     }
 
     private IEnumerator SpawnWave()
     {
-        waveNumber++;
-
-        for (int i = 0; i < waveNumber; i++)
+        WaveDetails wave = waves[waveNumber];
+        for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(1);
+            SpawnEnemy(wave.enemy);
+            yield return new WaitForSeconds(1f / wave.rate);
+        }
+        waveNumber++;
+        if (waveNumber == waves.Length)
+        {
+            GameManager.singleton.WinGame();
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(GameObject enemyType)
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(enemyType, spawnPoint.position, spawnPoint.rotation);
+        enemiesInGame ++;
     }
 }

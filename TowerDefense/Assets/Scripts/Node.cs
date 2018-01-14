@@ -96,4 +96,11 @@ public class Node : MonoBehaviour
 
         ShopManager.singleton.TurretPlaced();
     }
+
+    public void SellTurret()
+    {
+        PlayerManager.money += turretStats.cost;
+        Destroy(this.turret);
+        this.turret = null;
+    }
 }
