@@ -1145,7 +1145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885021592034396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.743942, y: -0.50000095, z: -24.497519}
+  m_LocalPosition: {x: -9.026356, y: -0.5000005, z: -24.95311}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4900527850681188}
@@ -2469,6 +2469,7 @@ MonoBehaviour:
   frozenColour: {r: 0.045036756, g: 0.80631334, b: 0.875, a: 0}
   body: {fileID: 1697769189592202}
   healthBar: {fileID: 114388778705341898}
+  healthBarObject: {fileID: 1279225562986958}
 --- !u!114 &114333660556725960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2633,7 +2634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 28.599964}
+  m_AnchoredPosition: {x: 0, y: 15.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224541976862067388

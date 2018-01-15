@@ -726,7 +726,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1179648110248586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.1411, y: -0.5, z: -22.958162}
+  m_LocalPosition: {x: -0.5955086, y: -0.5000005, z: -24.46753}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4770630702656134}
@@ -2395,6 +2395,7 @@ MonoBehaviour:
   frozenColour: {r: 0.045036756, g: 0.80631334, b: 0.875, a: 0}
   body: {fileID: 1944834157473786}
   healthBar: {fileID: 114881394630453044}
+  healthBarObject: {fileID: 1871212375555846}
 --- !u!114 &114725141632775226
 MonoBehaviour:
   m_ObjectHideFlags: 1
