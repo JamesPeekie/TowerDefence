@@ -47,6 +47,7 @@ public class Node : MonoBehaviour
     public void BuildTurret()
     {
         TurretStats turretToBuild = turretManager.turretToBuild;
+        turretStats = turretToBuild;
 
         if (!turretManager.CanBuild)
         {
@@ -69,11 +70,20 @@ public class Node : MonoBehaviour
         this.turret = turret;
         turretManager.HidePlacePath();
 
+        TurretSelection.singleton.HideUiObject();
         ShopManager.singleton.TurretPlaced();
     }
 
     public void UpgradeTurret()
     {
+        if(turretStats.upgradedPrefab == null)
+        {
+            TurretSelection.singleton.HideUpgradeButton(true);
+            return;
+        }
+
+        TurretSelection.singleton.HideUpgradeButton(false);
+
         if (PlayerManager.money < turretStats.upgradeCost) // Checks if you have no money left.
         {
             turretManager.HandleNotEnoughMoney();
@@ -94,6 +104,7 @@ public class Node : MonoBehaviour
 
         isUpgraded = true;
 
+        TurretSelection.singleton.HideUiObject();
         ShopManager.singleton.TurretPlaced();
     }
 
@@ -102,5 +113,6 @@ public class Node : MonoBehaviour
         PlayerManager.money += turretStats.cost;
         Destroy(this.turret);
         this.turret = null;
+        TurretSelection.singleton.HideUiObject();
     }
 }
