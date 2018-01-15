@@ -13,9 +13,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Color frozenColour;
     [SerializeField] private GameObject body;
     [SerializeField] private Image healthBar;
-    [SerializeField] private GameObject healthBarObject;
-
-    Camera cam;
 
     private Transform target; // intended waypoint to travel to
     private int waypointIndex = 0; // value of the target to travel to
@@ -25,7 +22,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main;
         enemyRender = body.GetComponent<Renderer>();
         defaultColour = enemyRender.material.color;
         speed = startSpeed;
@@ -62,7 +58,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        healthBarObject.transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
