@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 120721445085837286}
   - component: {fileID: 65090691782243410}
   m_Layer: 0
-  m_Name: StandardIceTurret
+  m_Name: Level1IceTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d954314d35e14a840840eb227d36c994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 10
   turnSpeed: 10
   fireRate: 1
   shootSound: {fileID: 0}

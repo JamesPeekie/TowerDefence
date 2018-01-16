@@ -12,7 +12,7 @@ public class WaveSpawner : MonoBehaviour
     public WaveDetails[] waves;
 
     [SerializeField] private float timeBetweenWaves = 5f;
-    private float countdown = 2f;
+    private float countdown = 20f;
     public Text waveCountdownText;
     public static int waveNumber = 0;
     [SerializeField] private Color textColour;

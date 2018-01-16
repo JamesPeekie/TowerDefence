@@ -932,25 +932,25 @@ MonoBehaviour:
     rate: 1
   - enemy: {fileID: 1522774228436770, guid: bde5ffa3a1f6444429e4ee6c7ff26bd6, type: 2}
     count: 3
-    rate: 1
+    rate: 1.25
   - enemy: {fileID: 1369598505083346, guid: bfb0d5d3fee099b4695ba30150f67659, type: 2}
     count: 1
     rate: 1
   - enemy: {fileID: 1369598505083346, guid: bfb0d5d3fee099b4695ba30150f67659, type: 2}
     count: 2
-    rate: 0.5
+    rate: 0.75
   - enemy: {fileID: 1179648110248586, guid: 36383f9a1ba91514bb1c7badd8c416ff, type: 2}
     count: 4
-    rate: 0.25
+    rate: 1
   - enemy: {fileID: 1965390235806972, guid: 5a52d51dcf5c2a34fa910b08163ed290, type: 2}
     count: 1
     rate: 1
   - enemy: {fileID: 1522774228436770, guid: bde5ffa3a1f6444429e4ee6c7ff26bd6, type: 2}
-    count: 8
-    rate: 0.25
+    count: 12
+    rate: 1
   - enemy: {fileID: 1369598505083346, guid: bfb0d5d3fee099b4695ba30150f67659, type: 2}
     count: 4
-    rate: 0.5
+    rate: 1
   - enemy: {fileID: 1885021592034396, guid: cfa9938381d607642a3e33d5cf572c33, type: 2}
     count: 1
     rate: 1
@@ -1009,10 +1009,10 @@ MonoBehaviour:
       type: 2}
     turretDisplay: {fileID: 1036086984}
     cost: 10
-    damage: 0
-    range: 0
-    rateOfFire: 0
-    turnSpeed: 0
+    damage: 50
+    range: 10
+    rateOfFire: 5
+    turnSpeed: 4
     upgradeCost: 40
     upgradedPrefab: {fileID: 1655703990734678, guid: 5b684dcae79295249abf33303aad543d,
       type: 2}
@@ -1022,10 +1022,10 @@ MonoBehaviour:
       type: 2}
     turretDisplay: {fileID: 140387900}
     cost: 50
-    damage: 0
-    range: 0
-    rateOfFire: 0
-    turnSpeed: 0
+    damage: 50
+    range: 15
+    rateOfFire: 10
+    turnSpeed: 6
     upgradeCost: 0
     upgradedPrefab: {fileID: 0}
   standardMissileTurret:
@@ -1033,11 +1033,11 @@ MonoBehaviour:
     turretPrefab: {fileID: 1908177530389846, guid: 8c797fb8ecde34c41912c5ac695e9f02,
       type: 2}
     turretDisplay: {fileID: 400910340}
-    cost: 50
-    damage: 0
-    range: 0
-    rateOfFire: 0
-    turnSpeed: 0
+    cost: 70
+    damage: 50
+    range: 15
+    rateOfFire: 50
+    turnSpeed: 10
     upgradeCost: 60
     upgradedPrefab: {fileID: 1129187170258000, guid: 14134ee18f83e18429850b73fc69d936,
       type: 2}
@@ -1046,11 +1046,11 @@ MonoBehaviour:
     turretPrefab: {fileID: 1129187170258000, guid: 14134ee18f83e18429850b73fc69d936,
       type: 2}
     turretDisplay: {fileID: 1781114026}
-    cost: 110
-    damage: 0
-    range: 0
-    rateOfFire: 0
-    turnSpeed: 0
+    cost: 130
+    damage: 100
+    range: 15
+    rateOfFire: 50
+    turnSpeed: 10
     upgradeCost: 0
     upgradedPrefab: {fileID: 0}
   standardLaserTurret:
@@ -1059,25 +1059,25 @@ MonoBehaviour:
       type: 2}
     turretDisplay: {fileID: 982769422}
     cost: 40
-    damage: 0
-    range: 0
+    damage: 30
+    range: 15
     rateOfFire: 0
-    turnSpeed: 0
+    turnSpeed: 10
     upgradeCost: 40
-    upgradedPrefab: {fileID: 0}
+    upgradedPrefab: {fileID: 1051379841118072, guid: 2027af9ae28341344b322e0e07b9f367,
+      type: 2}
   advancedLaserTurret:
     displayName: Level 2 Laser Turret
     turretPrefab: {fileID: 1051379841118072, guid: 2027af9ae28341344b322e0e07b9f367,
       type: 2}
     turretDisplay: {fileID: 253959186}
     cost: 80
-    damage: 0
-    range: 0
+    damage: 50
+    range: 15
     rateOfFire: 0
-    turnSpeed: 0
+    turnSpeed: 10
     upgradeCost: 0
-    upgradedPrefab: {fileID: 1051379841118072, guid: 2027af9ae28341344b322e0e07b9f367,
-      type: 2}
+    upgradedPrefab: {fileID: 0}
   standardIceTurret:
     displayName: Level 1 Ant Freezer
     turretPrefab: {fileID: 1479469135699520, guid: ba5ed611432055b418abd1c7e16c3ce9,
@@ -9593,7 +9593,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 621099585}
-  m_LocalRotation: {x: -0.60073346, y: -0.37298733, z: -0.37298703, w: -0.6007334}
+  m_LocalRotation: {x: -0.6007334, y: -0.3729873, z: -0.372987, w: -0.60073334}
   m_LocalPosition: {x: -14.700002, y: 14.700007, z: 17.400002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -16575,7 +16575,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 992198059}
-  m_LocalRotation: {x: -0.60073346, y: -0.37298733, z: -0.37298703, w: -0.6007334}
+  m_LocalRotation: {x: -0.6007334, y: -0.3729873, z: -0.372987, w: -0.60073334}
   m_LocalPosition: {x: -14.700002, y: 14.700007, z: 17.400002}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.1}
   m_Children:

@@ -923,7 +923,7 @@ MonoBehaviour:
   useLaser: 1
   slowsEnemy: 0
   laserDisplay: {fileID: 120885708218638044}
-  DamageOverTime: 60
+  DamageOverTime: 50
   node: {fileID: 0}
 --- !u!120 &120885708218638044
 LineRenderer:

@@ -43,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Slow()
     {
-        speed = startSpeed * 0.7f;
+        speed = startSpeed * 0.55f;
         enemyRender.material.color = frozenColour;
     }
 
