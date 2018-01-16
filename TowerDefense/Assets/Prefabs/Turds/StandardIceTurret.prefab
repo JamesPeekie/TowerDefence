@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 120721445085837286}
   - component: {fileID: 65090691782243410}
   m_Layer: 0
-  m_Name: Level1IceTurret
+  m_Name: StandardIceTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

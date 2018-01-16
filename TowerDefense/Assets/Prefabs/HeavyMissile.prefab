@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damage: 100
+  damage: 50
   explosionRadius: 8
   AntBlood: {fileID: 1162503813623856, guid: d0ad26f744aa33e47acf9d3b4a76885a, type: 2}
 --- !u!198 &198651513677166062

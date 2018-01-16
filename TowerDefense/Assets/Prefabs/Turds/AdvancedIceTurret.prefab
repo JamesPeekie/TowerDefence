@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 120222704703414018}
   - component: {fileID: 65774255587797090}
   m_Layer: 0
-  m_Name: Level2IceTurret
+  m_Name: AdvancedIceTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
