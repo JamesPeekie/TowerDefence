@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ShopManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class ShopManager : MonoBehaviour
     public TurretStats standardIceTurret;
     public TurretStats advancedIceTurret;
 
+    private List<TurretStats> allTurrets;
+
     private TurretManager turretManager;
     public bool turretPlacementActive = false;
 
@@ -44,15 +47,16 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        InitializeDisplayTurrets();
+        InitializeLists();
         turretManager = TurretManager.singleton;
         turretDisplayRenderTexture = turretDisplayRenderTextureImage.texture as RenderTexture;
         turretInfoPanel.SetActive(false);
         HideAllTurretDisplays();
     }
 
-    void InitializeDisplayTurrets()
+    void InitializeLists()
     {
+        // Display Turrets
         displayTurrets = new List<GameObject>();
         displayTurrets.Add(standardTurret.turretDisplay);
         displayTurrets.Add(advancedTurret.turretDisplay);
@@ -62,6 +66,17 @@ public class ShopManager : MonoBehaviour
         displayTurrets.Add(advancedLaserTurret.turretDisplay);
         displayTurrets.Add(standardIceTurret.turretDisplay);
         displayTurrets.Add(advancedIceTurret.turretDisplay);
+
+        // TurretStats List
+        allTurrets = new List<TurretStats>();
+        allTurrets.Add(standardTurret);
+        allTurrets.Add(advancedTurret);
+        allTurrets.Add(standardMissileTurret);
+        allTurrets.Add(advancedMissileTurret);
+        allTurrets.Add(standardLaserTurret);
+        allTurrets.Add(advancedLaserTurret);
+        allTurrets.Add(standardIceTurret);
+        allTurrets.Add(advancedIceTurret);
     }
 
     void Update()
@@ -81,6 +96,11 @@ public class ShopManager : MonoBehaviour
     {
         turretPlacementActive = false;
         HideAllTurretDisplays();
+    }
+
+    public TurretStats GetTurretStatsFor(GameObject turretPrefab)
+    {
+        return allTurrets.Where(x => x.turretPrefab == turretPrefab).FirstOrDefault();
     }
 
     public void HoverOverTurret(TurretStats turret)

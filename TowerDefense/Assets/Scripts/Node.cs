@@ -76,13 +76,7 @@ public class Node : MonoBehaviour
 
     public void UpgradeTurret()
     {
-        if(turretStats.upgradedPrefab == null)
-        {
-            TurretSelection.singleton.HideUpgradeButton(true);
-            return;
-        }
-
-        TurretSelection.singleton.HideUpgradeButton(false);
+        if (turretStats.upgradedPrefab == null) return;
 
         if (PlayerManager.money < turretStats.upgradeCost) // Checks if you have no money left.
         {
@@ -96,10 +90,12 @@ public class Node : MonoBehaviour
         Destroy(this.turret);
 
         // Build new, upgraded one.
+        TurretStats newTurretStats = ShopManager.singleton.GetTurretStatsFor(turretStats.upgradedPrefab);
         GameObject turret = Instantiate(turretStats.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
         Turret turretComponent = turret.GetComponent<Turret>();
         turretComponent.SetNode(this);
         this.turret = turret;
+        this.turretStats = newTurretStats;
         turretManager.HidePlacePath();
 
         isUpgraded = true;

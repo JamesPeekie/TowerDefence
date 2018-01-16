@@ -29,6 +29,7 @@ public class TurretSelection : MonoBehaviour
     public void HideUiObject()
     {
         gameObject.SetActive(false);
+        target = null;
     }
 
     public void HideUpgradeButton(bool tf)
@@ -46,22 +47,35 @@ public class TurretSelection : MonoBehaviour
 
     public void SetNodeTarget(Node selectedNode)
     {
+        // If the node you've clicked is already selected, unselect it.
+        if (target == selectedNode)
+        {
+            HideUiObject();
+            return;
+        }
+
         gameObject.SetActive(true);
         target = selectedNode;
 
         transform.position = target.GetBuildPosition();
+        if (selectedNode.turretStats.upgradedPrefab == null)
+        {
+            upgradeButton.SetActive(false);
+        } else
+        {
+            upgradeButton.SetActive(true);
+        }
+
         anim.Play("TurretUiSpawnIn");
     }
     
     public void Upgrade()
     {
-        Debug.Log("Upgrade");
         target.UpgradeTurret();
     }
 
     public void Sell()
     {
-        Debug.Log("Sell!");
         target.SellTurret();
     }
 }
