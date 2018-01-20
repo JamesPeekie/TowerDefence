@@ -151,12 +151,12 @@ public class ShopManager : MonoBehaviour
 
     public void IceTurretIconPointerEnter()
     {
-        HoverOverTurret(standardLaserTurret);
+        HoverOverTurret(standardIceTurret);
     }
 
     public void AdvancedIceTurretIconPointerEnter()
     {
-        HoverOverTurret(advancedLaserTurret);
+        HoverOverTurret(advancedIceTurret);
     }
 
     public void IconPointerExit()

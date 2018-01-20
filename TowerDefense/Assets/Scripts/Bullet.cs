@@ -80,4 +80,9 @@ public class Bullet : MonoBehaviour
             e.TakeDamage(damage);
         }
     }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
 }

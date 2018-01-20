@@ -35,7 +35,13 @@ public class WaveSpawner : MonoBehaviour
             waveCountdownText.color = Color.red;
         }
 
-        else if (countdown <= 0)
+        if (waveNumber == waves.Length)
+        {
+            GameManager.singleton.WinGame();
+            this.enabled = false;
+        }
+
+        if (countdown <= 0)
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
@@ -52,21 +58,17 @@ public class WaveSpawner : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         WaveDetails wave = waves[waveNumber];
+        enemiesInGame = wave.count;
         for (int i = 0; i < wave.count; i++)
         {
             SpawnEnemy(wave.enemy);
             yield return new WaitForSeconds(1f / wave.rate);
         }
         waveNumber++;
-        if (waveNumber == waves.Length)
-        {
-            GameManager.singleton.WinGame();
-        }
     }
 
     void SpawnEnemy(GameObject enemyType)
     {
         Instantiate(enemyType, spawnPoint.position, spawnPoint.rotation);
-        enemiesInGame ++;
     }
 }
